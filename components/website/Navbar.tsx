@@ -16,8 +16,8 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50">
-      <nav className="flex h-14 w-full items-center justify-between border-b border-black/5 bg-white px-4 shadow-[0_4px_24px_rgba(10,10,10,0.08)] sm:px-6">
+    <header className="fixed inset-x-0 top-0 z-50 px-3 sm:px-6">
+      <nav className="mx-auto flex h-14 max-w-[1548px] items-center justify-between rounded-b-[22px] border-x border-b border-black/5 bg-white px-4 shadow-[0_4px_24px_rgba(10,10,10,0.08)] sm:px-6">
         <Link href="/" className="flex shrink-0 items-center gap-2.5">
           <span className="relative flex size-7 items-end justify-center gap-0.5 overflow-hidden rounded-[9px] bg-[#f5f0e0] pb-1">
             <span className="h-3.5 w-1.5 rounded-full bg-[#ff6b5a]" />
@@ -68,7 +68,7 @@ export default function Navbar() {
       </nav>
 
       {open && (
-        <div className="w-full border-b border-black/5 bg-white px-5 py-4 shadow-[0_4px_24px_rgba(10,10,10,0.08)] md:hidden">
+        <div className="mx-auto mt-2 max-w-[1548px] rounded-2xl border border-black/5 bg-white px-5 py-4 shadow-[0_4px_24px_rgba(10,10,10,0.08)] md:hidden">
           <ul className="flex flex-col gap-4">
             {menuItems.map((item) => (
               <li key={item.href}>
