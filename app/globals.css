@@ -157,5 +157,11 @@
   }
   html {
     @apply font-sans;
+    /* ซ่อน scrollbar แต่ยังเลื่อนได้ปกติ */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  html::-webkit-scrollbar {
+    display: none;
   }
 }
