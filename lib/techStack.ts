@@ -1,4 +1,4 @@
-// โลโก้ใน public/tech/ สร้างจากแพ็กเกจ thesvg ด้วย scripts/extract-tech-icons.mjs
+// โลโก้ใน public/tech/ เพิ่มด้วย: npx @thesvg/cli add <slug> --dir ./public/tech
 export interface TechItem {
   name: string;
   description: string;
