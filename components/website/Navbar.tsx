@@ -16,23 +16,25 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-hairline bg-canvas/85 backdrop-blur-md">
-      <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
-        <Link href="/" className="flex items-center gap-2">
-          <span className="flex size-8 items-center justify-center rounded-lg bg-gradient-to-br from-brand-blue to-brand-purple text-sm font-bold text-white">
-            W
+    <header className="fixed inset-x-0 top-0 z-50">
+      <nav className="flex h-14 w-full items-center justify-between border-b border-black/5 bg-white px-4 shadow-[0_4px_24px_rgba(10,10,10,0.08)] sm:px-6">
+        <Link href="/" className="flex shrink-0 items-center gap-2.5">
+          <span className="relative flex size-7 items-end justify-center gap-0.5 overflow-hidden rounded-[9px] bg-[#f5f0e0] pb-1">
+            <span className="h-3.5 w-1.5 rounded-full bg-[#ff6b5a]" />
+            <span className="h-5 w-1.5 rounded-full bg-[#22b8cf]" />
+            <span className="h-4 w-1.5 rounded-full bg-[#e8b94a]" />
           </span>
-          <span className="text-base font-semibold tracking-tight text-ink">
-            Wooyou Creative
+          <span className="text-[17px] font-semibold tracking-[-0.04em] text-[#0a0a0a]">
+            wooyou
           </span>
         </Link>
 
-        <ul className="hidden items-center gap-8 md:flex">
+        <ul className="hidden items-center gap-7 lg:flex">
           {menuItems.map((item) => (
             <li key={item.href}>
               <Link
                 href={item.href}
-                className="text-sm font-medium text-body-soft transition-colors hover:text-ink"
+                className="text-[13px] font-medium text-[#3a3a3a] transition-colors hover:text-black"
               >
                 {item.label}
               </Link>
@@ -40,10 +42,16 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <div className="hidden md:block">
+        <div className="hidden items-center gap-2 md:flex">
           <Link
             href="/contact"
-            className="inline-flex h-11 items-center rounded-xl bg-ink px-5 text-sm font-semibold text-canvas transition-opacity hover:opacity-85"
+            className="inline-flex h-10 items-center rounded-xl bg-[#f5f3ee] px-4 text-[13px] font-medium text-[#0a0a0a] transition-colors hover:bg-[#ebe6d6]"
+          >
+            ขอใบเสนอราคา
+          </Link>
+          <Link
+            href="/contact"
+            className="inline-flex h-10 items-center rounded-xl bg-[#0a0a0a] px-4 text-[13px] font-medium text-white transition-colors hover:bg-[#1f1f1f]"
           >
             เริ่มโปรเจค
           </Link>
@@ -51,7 +59,7 @@ export default function Navbar() {
 
         <button
           type="button"
-          className="text-ink md:hidden"
+          className="rounded-lg p-2 text-[#0a0a0a] md:hidden"
           onClick={() => setOpen(!open)}
           aria-label="เปิดเมนู"
         >
@@ -60,13 +68,13 @@ export default function Navbar() {
       </nav>
 
       {open && (
-        <div className="border-t border-hairline bg-canvas px-6 py-4 md:hidden">
+        <div className="w-full border-b border-black/5 bg-white px-5 py-4 shadow-[0_4px_24px_rgba(10,10,10,0.08)] md:hidden">
           <ul className="flex flex-col gap-4">
             {menuItems.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className="block text-sm font-medium text-body-soft hover:text-ink"
+                  className="block text-sm font-medium text-[#3a3a3a] hover:text-black"
                   onClick={() => setOpen(false)}
                 >
                   {item.label}
@@ -76,7 +84,7 @@ export default function Navbar() {
             <li>
               <Link
                 href="/contact"
-                className="inline-flex h-11 w-full items-center justify-center rounded-xl bg-ink text-sm font-semibold text-canvas"
+                className="inline-flex h-11 w-full items-center justify-center rounded-xl bg-[#0a0a0a] text-sm font-semibold text-white"
                 onClick={() => setOpen(false)}
               >
                 เริ่มโปรเจค
