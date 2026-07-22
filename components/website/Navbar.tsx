@@ -18,29 +18,31 @@ export default function Navbar() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 px-3 sm:px-6">
       <nav className="mx-auto flex h-14 max-w-[1548px] items-center justify-between rounded-b-[22px] border-x border-b border-black/5 bg-white px-4 shadow-[0_4px_24px_rgba(10,10,10,0.08)] sm:px-6">
-        <Link href="/" className="flex shrink-0 items-center gap-2.5">
-          <span className="relative flex size-7 items-end justify-center gap-0.5 overflow-hidden rounded-[9px] bg-[#f5f0e0] pb-1">
-            <span className="h-3.5 w-1.5 rounded-full bg-[#ff6b5a]" />
-            <span className="h-5 w-1.5 rounded-full bg-[#22b8cf]" />
-            <span className="h-4 w-1.5 rounded-full bg-[#e8b94a]" />
-          </span>
-          <span className="text-[17px] font-semibold tracking-[-0.04em] text-[#0a0a0a]">
-            wooyou
-          </span>
-        </Link>
+        <div className="flex items-center gap-8">
+          <Link href="/" className="flex shrink-0 items-center gap-2.5">
+            <span className="relative flex size-7 items-end justify-center gap-0.5 overflow-hidden rounded-[9px] bg-[#f5f0e0] pb-1">
+              <span className="h-3.5 w-1.5 rounded-full bg-[#ff6b5a]" />
+              <span className="h-5 w-1.5 rounded-full bg-[#22b8cf]" />
+              <span className="h-4 w-1.5 rounded-full bg-[#e8b94a]" />
+            </span>
+            <span className="text-[17px] font-semibold tracking-[-0.04em] text-[#0a0a0a]">
+              wooyou
+            </span>
+          </Link>
 
-        <ul className="hidden items-center gap-7 lg:flex">
-          {menuItems.map((item) => (
-            <li key={item.href}>
-              <Link
-                href={item.href}
-                className="text-[13px] font-medium text-[#3a3a3a] transition-colors hover:text-black"
-              >
-                {item.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
+          <ul className="hidden items-center gap-7 lg:flex">
+            {menuItems.map((item) => (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  className="text-[13px] font-medium text-[#3a3a3a] transition-colors hover:text-black"
+                >
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
 
         <div className="hidden items-center gap-2 md:flex">
           <Link
