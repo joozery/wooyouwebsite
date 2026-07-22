@@ -12,10 +12,15 @@ export default function MarqueeSlider() {
               key={`${tech.name}-${i}`}
               className="flex items-center gap-2.5 whitespace-nowrap"
             >
-              <span
-                className="flex size-7 items-center justify-center rounded-md bg-white p-1.5 [&>svg]:h-full [&>svg]:w-full"
-                dangerouslySetInnerHTML={{ __html: tech.svg }}
-              />
+              <span className="flex size-7 items-center justify-center rounded-md bg-white p-1.5">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={tech.icon}
+                  alt={tech.name}
+                  className="size-full object-contain"
+                  loading="lazy"
+                />
+              </span>
               <span className="text-sm font-medium text-body-soft">
                 {tech.name}
               </span>

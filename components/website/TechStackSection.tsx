@@ -29,10 +29,15 @@ export default function TechStackSection() {
                     key={tech.name}
                     className="group rounded-2xl border border-hairline bg-surface-card p-5 transition-transform duration-300 hover:-translate-y-1"
                   >
-                    <span
-                      className="flex size-12 items-center justify-center rounded-xl bg-white p-2.5 [&>svg]:h-full [&>svg]:w-full"
-                      dangerouslySetInnerHTML={{ __html: tech.svg }}
-                    />
+                    <span className="flex size-12 items-center justify-center rounded-xl bg-white p-2.5">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={tech.icon}
+                        alt={tech.name}
+                        className="size-full object-contain"
+                        loading="lazy"
+                      />
+                    </span>
                     <h4 className="mt-4 text-sm font-semibold text-ink">
                       {tech.name}
                     </h4>

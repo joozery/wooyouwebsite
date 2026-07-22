@@ -1,24 +1,8 @@
-import {
-  aws,
-  docker,
-  figma,
-  firebase,
-  flutter,
-  framer,
-  mongodb,
-  mysql,
-  nextjs,
-  nodejs,
-  react,
-  tailwindcss,
-  typescript,
-  wordpress,
-} from "thesvg";
-
+// โลโก้ใน public/tech/ สร้างจากแพ็กเกจ thesvg ด้วย scripts/extract-tech-icons.mjs
 export interface TechItem {
   name: string;
   description: string;
-  svg: string;
+  icon: string;
 }
 
 export interface TechCategory {
@@ -26,46 +10,90 @@ export interface TechCategory {
   items: TechItem[];
 }
 
-// ตัด XML prolog ออกเพื่อ inline ใน HTML ได้สะอาดๆ
-const clean = (svg: string) => svg.replace(/<\?xml[^>]*\?>\s*/, "");
-
-const item = (
-  icon: { title: string; svg: string },
-  description: string,
-): TechItem => ({
-  name: icon.title,
-  description,
-  svg: clean(icon.svg),
-});
-
 export const techCategories: TechCategory[] = [
   {
     title: "Frontend & Mobile",
     items: [
-      item(react, "สร้าง UI แบบ component ยืดหยุ่นสูง"),
-      item(nextjs, "เว็บเร็ว SEO ดี ด้วย SSR/SSG"),
-      item(typescript, "โค้ดปลอดภัย ลด bug ด้วย type"),
-      item(tailwindcss, "ออกแบบ UI ได้เร็วและสม่ำเสมอ"),
-      item(flutter, "แอปมือถือ iOS/Android โค้ดเดียว"),
+      {
+        name: "React",
+        description: "สร้าง UI แบบ component ยืดหยุ่นสูง",
+        icon: "/tech/react.svg",
+      },
+      {
+        name: "Next.js",
+        description: "เว็บเร็ว SEO ดี ด้วย SSR/SSG",
+        icon: "/tech/nextjs.svg",
+      },
+      {
+        name: "TypeScript",
+        description: "โค้ดปลอดภัย ลด bug ด้วย type",
+        icon: "/tech/typescript.svg",
+      },
+      {
+        name: "Tailwind CSS",
+        description: "ออกแบบ UI ได้เร็วและสม่ำเสมอ",
+        icon: "/tech/tailwindcss.svg",
+      },
+      {
+        name: "Flutter",
+        description: "แอปมือถือ iOS/Android โค้ดเดียว",
+        icon: "/tech/flutter.svg",
+      },
     ],
   },
   {
     title: "Backend & Database",
     items: [
-      item(nodejs, "API ประสิทธิภาพสูงฝั่งเซิร์ฟเวอร์"),
-      item(mongodb, "ฐานข้อมูล NoSQL ยืดหยุ่น"),
-      item(mysql, "ฐานข้อมูล SQL มาตรฐานองค์กร"),
-      item(firebase, "Auth, Realtime DB และ Hosting"),
+      {
+        name: "Node.js",
+        description: "API ประสิทธิภาพสูงฝั่งเซิร์ฟเวอร์",
+        icon: "/tech/nodejs.svg",
+      },
+      {
+        name: "MongoDB",
+        description: "ฐานข้อมูล NoSQL ยืดหยุ่น",
+        icon: "/tech/mongodb.svg",
+      },
+      {
+        name: "MySQL",
+        description: "ฐานข้อมูล SQL มาตรฐานองค์กร",
+        icon: "/tech/mysql.svg",
+      },
+      {
+        name: "Firebase",
+        description: "Auth, Realtime DB และ Hosting",
+        icon: "/tech/firebase.svg",
+      },
     ],
   },
   {
     title: "Platform & Tools",
     items: [
-      item(aws, "โครงสร้างพื้นฐานคลาวด์ระดับโลก"),
-      item(docker, "Deploy สม่ำเสมอทุก environment"),
-      item(wordpress, "เว็บไซต์ CMS จัดการเองได้"),
-      item(figma, "ออกแบบ UI/UX ร่วมกันแบบ realtime"),
-      item(framer, "Animation ลื่นไหลระดับโปร"),
+      {
+        name: "AWS",
+        description: "โครงสร้างพื้นฐานคลาวด์ระดับโลก",
+        icon: "/tech/aws.svg",
+      },
+      {
+        name: "Docker",
+        description: "Deploy สม่ำเสมอทุก environment",
+        icon: "/tech/docker.svg",
+      },
+      {
+        name: "WordPress",
+        description: "เว็บไซต์ CMS จัดการเองได้",
+        icon: "/tech/wordpress.svg",
+      },
+      {
+        name: "Figma",
+        description: "ออกแบบ UI/UX ร่วมกันแบบ realtime",
+        icon: "/tech/figma.svg",
+      },
+      {
+        name: "Framer",
+        description: "Animation ลื่นไหลระดับโปร",
+        icon: "/tech/framer.svg",
+      },
     ],
   },
 ];
