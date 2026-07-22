@@ -36,15 +36,15 @@ export default function Navbar() {
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className="group block px-3.5 py-2 text-[13px] font-medium text-[#3a3a3a] [perspective:120px]"
+                  className="group block px-3.5 py-2 text-[13px] font-medium text-[#3a3a3a] perspective-[120px]"
                 >
                   <span className="relative block overflow-hidden">
-                    <span className="block origin-top transition-all duration-300 ease-out group-hover:-translate-y-full group-hover:[transform:translateY(-100%)_rotateX(60deg)] group-hover:opacity-0">
+                    <span className="block origin-top transition-all duration-300 ease-out group-hover:transform-[translateY(-100%)_rotateX(60deg)] group-hover:opacity-0">
                       {item.label}
                     </span>
                     <span
                       aria-hidden
-                      className="absolute inset-0 block origin-bottom translate-y-full font-semibold text-black opacity-0 [transform:translateY(100%)_rotateX(-60deg)] transition-all duration-300 ease-out group-hover:translate-y-0 group-hover:[transform:translateY(0)_rotateX(0)] group-hover:opacity-100"
+                      className="absolute inset-0 block origin-bottom font-semibold text-black opacity-0 transform-[translateY(100%)_rotateX(-60deg)] transition-all duration-300 ease-out group-hover:transform-[translateY(0)_rotateX(0)] group-hover:opacity-100"
                     >
                       {item.label}
                     </span>
