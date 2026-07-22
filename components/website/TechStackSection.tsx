@@ -1,10 +1,16 @@
 import { techCategories } from "@/lib/techStack";
 
+const categoryAccents = [
+  "from-brand-blue to-brand-cyan",
+  "from-brand-teal to-brand-blue",
+  "from-brand-purple to-brand-pink",
+];
+
 export default function TechStackSection() {
   return (
     <section className="bg-canvas py-24">
       <div className="mx-auto max-w-7xl px-6">
-        <div className="max-w-2xl">
+        <div className="mx-auto max-w-2xl text-center">
           <span className="text-xs font-semibold tracking-[1.5px] text-brand-cyan uppercase">
             Tech Stack
           </span>
@@ -12,40 +18,48 @@ export default function TechStackSection() {
             เทคโนโลยีที่เราใช้
           </h2>
           <p className="mt-5 leading-relaxed text-body-soft">
-            เราเลือกเครื่องมือที่เหมาะกับแต่ละโปรเจค
-            เพื่อให้ได้ระบบที่เร็ว ปลอดภัย และดูแลต่อได้ในระยะยาว
+            เราเลือกเครื่องมือที่เหมาะกับแต่ละโปรเจค เพื่อให้ได้ระบบที่เร็ว
+            ปลอดภัย และดูแลต่อได้ในระยะยาว
           </p>
         </div>
 
-        <div className="mt-14 space-y-12">
-          {techCategories.map((category) => (
-            <div key={category.title}>
-              <h3 className="text-sm font-semibold tracking-[1.5px] text-muted-soft uppercase">
-                {category.title}
-              </h3>
-              <div className="mt-5 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
-                {category.items.map((tech) => (
-                  <div
-                    key={tech.name}
-                    className="group rounded-2xl border border-hairline bg-surface-card p-5 transition-transform duration-300 hover:-translate-y-1"
-                  >
-                    <span className="flex size-12 items-center justify-center rounded-xl bg-white p-2.5">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={tech.icon}
-                        alt={tech.name}
-                        className="size-full object-contain"
-                        loading="lazy"
-                      />
-                    </span>
-                    <h4 className="mt-4 text-sm font-semibold text-ink">
-                      {tech.name}
-                    </h4>
-                    <p className="mt-1.5 text-xs leading-relaxed text-body-soft">
-                      {tech.description}
-                    </p>
-                  </div>
-                ))}
+        <div className="mt-14 grid gap-6 lg:grid-cols-3">
+          {techCategories.map((category, i) => (
+            <div
+              key={category.title}
+              className="overflow-hidden rounded-3xl border border-hairline bg-surface-soft"
+            >
+              <div className={`h-1 bg-gradient-to-r ${categoryAccents[i]}`} />
+              <div className="p-7">
+                <h3 className="text-sm font-semibold tracking-[1.5px] text-ink uppercase">
+                  {category.title}
+                </h3>
+                <ul className="mt-6 space-y-2">
+                  {category.items.map((tech) => (
+                    <li
+                      key={tech.name}
+                      className="flex items-center gap-4 rounded-2xl p-3 transition-colors hover:bg-surface-card"
+                    >
+                      <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-white p-2.5">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={tech.icon}
+                          alt={tech.name}
+                          className="size-full object-contain"
+                          loading="lazy"
+                        />
+                      </span>
+                      <span>
+                        <span className="block text-sm font-semibold text-ink">
+                          {tech.name}
+                        </span>
+                        <span className="mt-0.5 block text-xs leading-relaxed text-body-soft">
+                          {tech.description}
+                        </span>
+                      </span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           ))}

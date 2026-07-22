@@ -1,5 +1,4 @@
 import HeroSection from "@/components/website/HeroSection";
-import MarqueeSlider from "@/components/website/MarqueeSlider";
 import ServiceSection from "@/components/website/ServiceSection";
 import TechStackSection from "@/components/website/TechStackSection";
 import ERPServiceSection from "@/components/website/ERPServiceSection";
@@ -12,7 +11,6 @@ export default function HomePage() {
   return (
     <main className="min-h-screen bg-canvas">
       <HeroSection />
-      <MarqueeSlider />
       <ServiceSection />
       <TechStackSection />
       <ERPServiceSection />
