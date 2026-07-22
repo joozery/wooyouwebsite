@@ -3,7 +3,7 @@ export default function HeroSection() {
     <section className="relative h-svh w-full overflow-hidden">
       <video
         className="absolute inset-0 size-full object-cover"
-        src="/motionhero/wooyoumotion.mp4"
+        src="/motionhero/wooyou2.mp4"
         autoPlay
         muted
         loop
