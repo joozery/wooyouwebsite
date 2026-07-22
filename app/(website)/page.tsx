@@ -1,7 +1,7 @@
 import HeroSection from "@/components/website/HeroSection";
 import MarqueeSlider from "@/components/website/MarqueeSlider";
 import ServiceSection from "@/components/website/ServiceSection";
-import IntroTechSection from "@/components/website/IntroTechSection";
+import TechStackSection from "@/components/website/TechStackSection";
 import ERPServiceSection from "@/components/website/ERPServiceSection";
 import RecentWorkSection from "@/components/website/RecentWorkSection";
 import CustomerSection from "@/components/website/CustomerSection";
@@ -14,7 +14,7 @@ export default function HomePage() {
       <HeroSection />
       <MarqueeSlider />
       <ServiceSection />
-      <IntroTechSection />
+      <TechStackSection />
       <ERPServiceSection />
       <RecentWorkSection />
       <CustomerSection />
