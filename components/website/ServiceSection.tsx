@@ -63,9 +63,14 @@ const services = [
 
 export default function ServiceSection() {
   return (
-    <section className="bg-canvas py-24">
-      <div className="mx-auto max-w-7xl px-6">
-        <div className="max-w-2xl">
+    <section className="relative overflow-hidden bg-canvas pt-8 pb-24">
+      {/* แสงเรืองต่อเนื่องจากบรรยากาศ galaxy ของ hero */}
+      <div className="pointer-events-none absolute -top-32 left-1/2 h-96 w-[80%] -translate-x-1/2 rounded-full bg-brand-purple/15 blur-3xl" />
+      <div className="pointer-events-none absolute top-40 -left-40 size-96 rounded-full bg-brand-blue/10 blur-3xl" />
+      <div className="pointer-events-none absolute top-64 -right-40 size-96 rounded-full bg-brand-indigo/10 blur-3xl" />
+
+      <div className="relative mx-auto max-w-7xl px-6">
+        <div className="mx-auto max-w-2xl text-center">
           <span className="text-xs font-semibold tracking-[1.5px] text-brand-lavender uppercase">
             Services
           </span>
