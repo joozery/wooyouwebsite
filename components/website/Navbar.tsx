@@ -3,7 +3,6 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 const menuItems = [
@@ -16,7 +15,6 @@ const menuItems = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-  const [hovered, setHovered] = useState<string | null>(null);
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 px-3 sm:px-6">
@@ -33,34 +31,24 @@ export default function Navbar() {
             />
           </Link>
 
-          <ul
-            className="hidden items-center gap-1 lg:flex"
-            onMouseLeave={() => setHovered(null)}
-          >
+          <ul className="hidden items-center gap-2 lg:flex">
             {menuItems.map((item) => (
-              <li key={item.href} className="relative">
+              <li key={item.href}>
                 <Link
                   href={item.href}
-                  className="relative block px-3.5 py-2 text-[13px] font-medium text-[#3a3a3a] transition-colors hover:text-black"
-                  onMouseEnter={() => setHovered(item.href)}
+                  className="group block px-3.5 py-2 text-[13px] font-medium text-[#3a3a3a] [perspective:120px]"
                 >
-                  <AnimatePresence>
-                    {hovered === item.href && (
-                      <motion.span
-                        layoutId="nav-hover-pill"
-                        className="absolute inset-0 rounded-full bg-[#f5f0e0]"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{
-                          type: "spring",
-                          stiffness: 400,
-                          damping: 32,
-                        }}
-                      />
-                    )}
-                  </AnimatePresence>
-                  <span className="relative">{item.label}</span>
+                  <span className="relative block overflow-hidden">
+                    <span className="block origin-top transition-all duration-300 ease-out group-hover:-translate-y-full group-hover:[transform:translateY(-100%)_rotateX(60deg)] group-hover:opacity-0">
+                      {item.label}
+                    </span>
+                    <span
+                      aria-hidden
+                      className="absolute inset-0 block origin-bottom translate-y-full font-semibold text-black opacity-0 [transform:translateY(100%)_rotateX(-60deg)] transition-all duration-300 ease-out group-hover:translate-y-0 group-hover:[transform:translateY(0)_rotateX(0)] group-hover:opacity-100"
+                    >
+                      {item.label}
+                    </span>
+                  </span>
                 </Link>
               </li>
             ))}
