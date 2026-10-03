@@ -14,86 +14,42 @@ export const techCategories: TechCategory[] = [
   {
     title: "Frontend & Mobile",
     items: [
-      {
-        name: "React",
-        description: "สร้าง UI แบบ component ยืดหยุ่นสูง",
-        icon: "/tech/react.svg",
-      },
-      {
-        name: "Next.js",
-        description: "เว็บเร็ว SEO ดี ด้วย SSR/SSG",
-        icon: "/tech/nextjs.svg",
-      },
-      {
-        name: "TypeScript",
-        description: "โค้ดปลอดภัย ลด bug ด้วย type",
-        icon: "/tech/typescript.svg",
-      },
-      {
-        name: "Tailwind CSS",
-        description: "ออกแบบ UI ได้เร็วและสม่ำเสมอ",
-        icon: "/tech/tailwindcss.svg",
-      },
-      {
-        name: "Flutter",
-        description: "แอปมือถือ iOS/Android โค้ดเดียว",
-        icon: "/tech/flutter.svg",
-      },
+      { name: "React",       description: "สร้าง UI แบบ component ยืดหยุ่นสูง",     icon: "/tech/react.svg" },
+      { name: "Next.js",     description: "เว็บเร็ว SEO ดี ด้วย SSR/SSG",           icon: "/tech/nextjs.svg" },
+      { name: "TypeScript",  description: "โค้ดปลอดภัย ลด bug ด้วย type",           icon: "/tech/typescript.svg" },
+      { name: "Tailwind CSS",description: "ออกแบบ UI ได้เร็วและสม่ำเสมอ",          icon: "/tech/tailwindcss.svg" },
+      { name: "Vue",         description: "Framework เบาและยืดหยุ่นสำหรับ SPA",     icon: "/tech/vue.svg" },
+      { name: "Angular",     description: "Framework ครบวงจรจาก Google",            icon: "/tech/angular.svg" },
+      { name: "Svelte",      description: "Compile-time framework ไม่มี runtime",    icon: "/tech/svelte.svg" },
+      { name: "Flutter",     description: "แอปมือถือ iOS/Android โค้ดเดียว",        icon: "/tech/flutter.svg" },
     ],
   },
   {
     title: "Backend & Database",
     items: [
-      {
-        name: "Node.js",
-        description: "API ประสิทธิภาพสูงฝั่งเซิร์ฟเวอร์",
-        icon: "/tech/nodejs.svg",
-      },
-      {
-        name: "MongoDB",
-        description: "ฐานข้อมูล NoSQL ยืดหยุ่น",
-        icon: "/tech/mongodb.svg",
-      },
-      {
-        name: "MySQL",
-        description: "ฐานข้อมูล SQL มาตรฐานองค์กร",
-        icon: "/tech/mysql.svg",
-      },
-      {
-        name: "Firebase",
-        description: "Auth, Realtime DB และ Hosting",
-        icon: "/tech/firebase.svg",
-      },
+      { name: "Node.js",     description: "API ประสิทธิภาพสูงฝั่งเซิร์ฟเวอร์",      icon: "/tech/nodejs.svg" },
+      { name: "Go",          description: "ภาษาเร็ว concurrent สูง จาก Google",      icon: "/tech/go.svg" },
+      { name: "Python",      description: "อเนกประสงค์ ตั้งแต่ API ถึง AI/ML",       icon: "/tech/python.svg" },
+      { name: "PHP",         description: "Backend ยอดนิยม ทำงานกับเว็บได้ทันที",   icon: "/tech/php.svg" },
+      { name: "Ruby",        description: "ภาษาที่เน้น developer happiness",          icon: "/tech/ruby.svg" },
+      { name: "Laravel",     description: "PHP framework ครบ ecosystem",              icon: "/tech/laravel.svg" },
+      { name: "MongoDB",     description: "ฐานข้อมูล NoSQL ยืดหยุ่น",               icon: "/tech/mongodb.svg" },
+      { name: "PostgreSQL",  description: "ฐานข้อมูล SQL ประสิทธิภาพสูง",           icon: "/tech/postgresql.svg" },
+      { name: "MySQL",       description: "ฐานข้อมูล SQL มาตรฐานองค์กร",            icon: "/tech/mysql.svg" },
+      { name: "Redis",       description: "In-memory cache และ pub/sub",             icon: "/tech/redis.svg" },
+      { name: "Firebase",    description: "Auth, Realtime DB และ Hosting",           icon: "/tech/firebase.svg" },
     ],
   },
   {
     title: "Platform & Tools",
     items: [
-      {
-        name: "AWS",
-        description: "โครงสร้างพื้นฐานคลาวด์ระดับโลก",
-        icon: "/tech/aws.svg",
-      },
-      {
-        name: "Docker",
-        description: "Deploy สม่ำเสมอทุก environment",
-        icon: "/tech/docker.svg",
-      },
-      {
-        name: "WordPress",
-        description: "เว็บไซต์ CMS จัดการเองได้",
-        icon: "/tech/wordpress.svg",
-      },
-      {
-        name: "Figma",
-        description: "ออกแบบ UI/UX ร่วมกันแบบ realtime",
-        icon: "/tech/figma.svg",
-      },
-      {
-        name: "Framer",
-        description: "Animation ลื่นไหลระดับโปร",
-        icon: "/tech/framer.svg",
-      },
+      { name: "AWS",         description: "โครงสร้างพื้นฐานคลาวด์ระดับโลก",         icon: "/tech/aws.svg" },
+      { name: "Docker",      description: "Deploy สม่ำเสมอทุก environment",          icon: "/tech/docker.svg" },
+      { name: "Kubernetes",  description: "Orchestrate container ระดับ production",  icon: "/tech/kubernetes.svg" },
+      { name: "Git",         description: "Version control มาตรฐานอุตสาหกรรม",       icon: "/tech/git.svg" },
+      { name: "WordPress",   description: "เว็บไซต์ CMS จัดการเองได้",              icon: "/tech/wordpress.svg" },
+      { name: "Figma",       description: "ออกแบบ UI/UX ร่วมกันแบบ realtime",       icon: "/tech/figma.svg" },
+      { name: "Framer",      description: "Animation ลื่นไหลระดับโปร",              icon: "/tech/framer.svg" },
     ],
   },
 ];
