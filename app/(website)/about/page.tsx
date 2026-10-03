@@ -26,9 +26,9 @@ export default async function AboutPage() {
   const sv = await getTranslations("services");
 
   const pillars = [
-    { Icon: Target, title: t("missionT"), body: t("missionB") },
-    { Icon: Eye, title: t("visionT"), body: t("visionB") },
-    { Icon: Heart, title: t("valuesT"), body: t("valuesB") },
+    { Icon: Target, title: t("missionT"), body: t("missionB"), accent: "bg-blue-50 text-blue-600" },
+    { Icon: Eye, title: t("visionT"), body: t("visionB"), accent: "bg-violet-50 text-violet-600" },
+    { Icon: Heart, title: t("valuesT"), body: t("valuesB"), accent: "bg-rose-50 text-rose-600" },
   ];
   const steps = [
     { title: t("p1T"), body: t("p1B") },
@@ -89,21 +89,69 @@ export default async function AboutPage() {
 
       <AboutShowcaseSection />
 
-      {/* mission / vision / values */}
-      <section className="py-16 md:py-24">
-        <div className="mx-auto grid max-w-7xl gap-5 px-4 sm:px-6 md:grid-cols-3">
-          {pillars.map(({ Icon, title, body }) => (
-            <div
-              key={title}
-              className="rounded-3xl border border-gray-100 bg-[#fafafa] p-7 transition-all hover:-translate-y-1 hover:shadow-lg"
-            >
-              <div className="flex size-12 items-center justify-center rounded-2xl bg-blue-600 text-white">
-                <Icon className="size-5" />
-              </div>
-              <h2 className="mt-6 text-xl font-bold">{title}</h2>
-              <p className="mt-3 text-sm leading-[1.9] text-gray-600">{body}</p>
+      <section aria-labelledby="experience-title" className="border-b border-gray-100 py-12 md:py-16">
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:items-center lg:gap-16">
+          <div>
+            <p className="text-xs font-semibold tracking-wide text-blue-600">{t("experience.eyebrow")}</p>
+            <h2 id="experience-title" className="mt-3 text-3xl font-semibold leading-[1.4] tracking-tight sm:text-4xl">
+              {t("experience.title")}
+            </h2>
+            <p className="mt-5 text-sm leading-7 text-gray-600 sm:text-base sm:leading-8">{t("experience.body")}</p>
+          </div>
+          <dl className="grid grid-cols-2 gap-6 sm:gap-8">
+            <div className="border-t-2 border-blue-600 pt-5">
+              <dt className="text-sm font-medium text-gray-700">{t("experience.teamLabel")}</dt>
+              <dd className="mt-3">
+                <span className={`text-6xl font-semibold tracking-tight sm:text-7xl ${gradientText}`}>10</span>
+                <span className="ml-2 text-sm text-gray-500">{t("experience.years")}</span>
+                <p className="mt-3 text-xs leading-6 text-gray-500 sm:text-sm">{t("experience.teamDetail")}</p>
+              </dd>
             </div>
-          ))}
+            <div className="border-t-2 border-violet-400 pt-5">
+              <dt className="text-sm font-medium text-gray-700">{t("experience.companyLabel")}</dt>
+              <dd className="mt-3">
+                <span className={`text-6xl font-semibold tracking-tight sm:text-7xl ${gradientText}`}>5</span>
+                <span className="ml-2 text-sm text-gray-500">{t("experience.companyYear")}</span>
+                <p className="mt-3 text-xs leading-6 text-gray-500 sm:text-sm">{t("experience.companyDetail")}</p>
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      {/* mission / vision / values */}
+      <section className="py-10 md:py-14">
+        <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[0.8fr_1.2fr] lg:gap-12">
+          <figure className="flex min-w-0 flex-col">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-slate-100 sm:aspect-[16/9] lg:aspect-auto lg:min-h-[400px] lg:flex-1">
+              <Image
+                src="/about.png"
+                alt=""
+                fill
+                sizes="(min-width: 1280px) 480px, (min-width: 1024px) 40vw, (min-width: 640px) 90vw, 100vw"
+                className="object-cover object-[42%_center]"
+              />
+            </div>
+          </figure>
+          <div className="self-start divide-y divide-slate-200/80 border-y border-slate-200/80">
+            {pillars.map(({ Icon, title, body, accent }, index) => (
+              <article
+                key={title}
+                className="grid grid-cols-[28px_1fr] items-start gap-x-4 gap-y-3 py-6 sm:gap-x-6 lg:py-7"
+              >
+                <span aria-hidden="true" className="pt-3 font-mono text-xs tracking-wider text-slate-400">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <div className="flex items-center gap-4">
+                  <span className={`flex size-11 shrink-0 items-center justify-center rounded-full ${accent}`}>
+                    <Icon aria-hidden="true" className="size-5" strokeWidth={1.6} />
+                  </span>
+                  <h2 className="text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">{title}</h2>
+                </div>
+                <p className="col-start-2 max-w-2xl text-sm leading-7 text-slate-600">{body}</p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 

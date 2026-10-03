@@ -1,4 +1,41 @@
 {
+  "portfolioPage": {
+    "title": "Our work",
+    "intro": "We build websites, platforms and business systems with clear brand communication and technology designed for real-world use.",
+    "filterLabel": "Filter projects",
+    "all": "ALL",
+    "allWorks": "All projects",
+    "viewProject": "View project",
+    "empty": "No projects are displayed in this category yet. Explore another category.",
+    "contact": "Discuss your project",
+    "close": "Close project details",
+    "resultCount": "{count} projects found",
+    "descriptions": {
+      "sistomat": "A business system for SISTOMAT with a clearly structured login interface and an industrial brand identity.",
+      "gography": "A travel website presenting tours with photographers, tour search and accessible enquiry channels.",
+      "sacit": "A website for SACIT Symposium presenting event photos, updates and participant information.",
+      "caraway": "A used-car website presenting buying, selling and trade-in services, vehicle search and contact options."
+    }
+  },
+  "servicePage": {
+    "viewWorks": "View our work",
+    "serviceCount": "Core services",
+    "whyTitle": "More than development. A partner who understands your business.",
+    "whyDesign": "Business-led design",
+    "whyCustom": "Custom development",
+    "whySupport": "Ongoing support",
+    "developBody": "Build and integrate systems to the agreed scope.",
+    "testBody": "Test the experience and refine it before delivery.",
+    "worksTitle": "Selected work",
+    "title": "From your idea",
+    "titleAccent": "to digital that works.",
+    "intro": "We bring design, technology and marketing together to build websites, apps and systems for your business, from initial planning to ongoing support.",
+    "explore": "Explore services",
+    "experience": "10 years of team experience",
+    "support": "From idea to launch and beyond",
+    "ctaTitle": "Not sure where to start?",
+    "ctaBody": "Tell us about your business goals. Our team can help you find the right approach and services for your project."
+  },
   "aboutShowcase": {
     "title": "Designing a digital presence for every business.",
     "lead": "We bring design, technology, and marketing together to create experiences that fit your business.",
@@ -330,6 +367,17 @@
     "cta": "View company profile"
   },
   "about": {
+    "experience": {
+      "eyebrow": "Our experience and growth",
+      "title": "10 years of experience. Our fifth year as Wooyou Creative.",
+      "body": "Behind Wooyou Creative is a team with 10 years of experience in design, development and digital marketing. We have brought that knowledge together in a company now entering its fifth year, helping businesses connect creativity with technology through planning, design, development and ongoing support.",
+      "teamLabel": "Team experience",
+      "years": "years",
+      "teamDetail": "Knowledge across design, technology and digital marketing",
+      "companyLabel": "Now in year",
+      "companyYear": "of operation",
+      "companyDetail": "Growing together as Wooyou Creative"
+    },
     "metaTitle": "About Us",
     "eyebrow": "About Us",
     "intro": "Wooyou Creative is a team of designers, developers and marketers who blend technology with creativity. We help businesses build websites, ERP systems and online marketing that work in the real world and grow with them.",

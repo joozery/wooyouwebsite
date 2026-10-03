@@ -1,4 +1,41 @@
 {
+  "portfolioPage": {
+    "title": "我们的作品",
+    "intro": "我们通过清晰传达品牌的设计和适用于实际使用的技术，打造网站、平台与业务系统。",
+    "filterLabel": "筛选项目",
+    "all": "全部",
+    "allWorks": "所有项目",
+    "viewProject": "查看项目",
+    "empty": "此类别暂未展示项目，请浏览其他类别。",
+    "contact": "讨论您的项目",
+    "close": "关闭项目详情",
+    "resultCount": "找到 {count} 个项目",
+    "descriptions": {
+      "sistomat": "SISTOMAT业务系统，具有清晰的登录界面和工业品牌形象。",
+      "gography": "展示摄影师陪同旅游、行程搜索和便捷咨询渠道的旅游网站。",
+      "sacit": "展示活动照片、新闻和参与者信息的SACIT Symposium网站。",
+      "caraway": "展示二手车买卖、置换服务，并提供车辆搜索和联系渠道的网站。"
+    }
+  },
+  "servicePage": {
+    "viewWorks": "查看我们的作品",
+    "serviceCount": "核心服务",
+    "whyTitle": "不止于开发，更是理解您业务的伙伴。",
+    "whyDesign": "以业务为核心的设计",
+    "whyCustom": "定制开发",
+    "whySupport": "交付后支持",
+    "developBody": "按照约定范围开发并集成系统。",
+    "testBody": "交付前测试使用体验并进行优化。",
+    "worksTitle": "精选作品",
+    "title": "从您的创意出发",
+    "titleAccent": "打造实用的数字体验。",
+    "intro": "我们融合设计、技术与营销，从前期规划到持续支持，为您的业务打造合适的网站、应用与系统。",
+    "explore": "探索服务",
+    "experience": "团队拥有10年经验",
+    "support": "从创意到上线及持续支持",
+    "ctaTitle": "还不确定从哪里开始？",
+    "ctaBody": "告诉我们您的业务目标，我们将帮助您找到适合项目的方向与服务。"
+  },
   "aboutShowcase": {
     "title": "为每个业务，设计独特的数字形象。",
     "lead": "我们结合设计、技术与营销，创造适合您业务的体验。",
@@ -330,6 +367,17 @@
     "cta": "查看公司简介"
   },
   "about": {
+    "experience": {
+      "eyebrow": "我们的经验与成长",
+      "title": "十年团队经验，迈入公司第五年。",
+      "body": "Wooyou Creative背后是一支拥有10年设计、开发与数字营销经验的团队。我们将积累的知识融入公司，如今已迈入运营的第五年。从规划、设计、开发到持续支持，我们帮助企业将创意与技术连接起来。",
+      "teamLabel": "团队经验",
+      "years": "年",
+      "teamDetail": "涵盖设计、技术与数字营销的知识",
+      "companyLabel": "公司发展历程",
+      "companyYear": "年（进入第五年）",
+      "companyDetail": "以Wooyou Creative之名持续成长"
+    },
     "metaTitle": "关于我们",
     "eyebrow": "About Us",
     "intro": "Wooyou Creative 是一支由设计师、开发者和营销人员组成的团队,将技术与创意融为一体。我们帮助企业打造真正好用、并能与业务共同成长的网站、ERP 系统和在线营销。",
