@@ -209,12 +209,12 @@ export function QuotationDocForm({ id }: { id?: string }) {
   return (
     <div className="bg-slate-100 min-h-screen p-4 sm:p-8">
       {/* Top bar */}
-      <div className="max-w-[210mm] mx-auto mb-6 flex justify-between items-center no-print">
+      <div className="max-w-[210mm] mx-auto mb-6 flex flex-col gap-3 sm:flex-row sm:justify-between sm:items-center no-print">
         <Button variant="ghost" onClick={() => router.push("/admin/quotations")}>
           <ArrowLeft className="mr-2 h-4 w-4" />
           กลับไปหน้ารายการ
         </Button>
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
           <Button onClick={handleSave} disabled={saving} className="bg-black hover:bg-slate-800 text-white">
             <Save className="mr-2 h-4 w-4" />
             {isEditing ? "บันทึกการเปลี่ยนแปลง" : "บันทึกใบเสนอราคา"}
@@ -227,6 +227,7 @@ export function QuotationDocForm({ id }: { id?: string }) {
       </div>
 
       {/* A4 Document */}
+      <div className="w-full overflow-x-auto print:overflow-visible">
       <div
         ref={docRef}
         className="w-[210mm] min-h-[297mm] mx-auto bg-white p-[40px] shadow-lg text-black text-sm relative flex flex-col"
@@ -542,6 +543,7 @@ export function QuotationDocForm({ id }: { id?: string }) {
             </div>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

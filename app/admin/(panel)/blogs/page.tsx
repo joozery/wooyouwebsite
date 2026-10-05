@@ -84,8 +84,8 @@ export default function BlogsPage() {
   }
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
+    <div className="min-w-0 space-y-6">
+      <div className="flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center">
         <div>
           <h1 className="text-2xl font-bold tracking-tight">บทความ (Blogs)</h1>
           <p className="text-muted-foreground text-sm mt-1">จัดการบทความและเนื้อหาบนเว็บไซต์</p>
@@ -106,7 +106,7 @@ export default function BlogsPage() {
         </CardContent></Card>
       ) : (
         <Card>
-          <Table>
+          <Table className="admin-mobile-list" role="table">
             <TableHeader>
               <TableRow>
                 <TableHead>หัวข้อ</TableHead>
@@ -120,14 +120,14 @@ export default function BlogsPage() {
             <TableBody>
               {filtered.map((b) => (
                 <TableRow key={b.id}>
-                  <TableCell>
+                  <TableCell data-label="หัวข้อ">
                     <div>
                       <p className="font-medium">{b.title}</p>
                       <p className="text-xs text-muted-foreground">{b.slug}</p>
                     </div>
                   </TableCell>
-                  <TableCell className="text-muted-foreground text-sm">{b.author}</TableCell>
-                  <TableCell>
+                  <TableCell data-label="ผู้เขียน" className="text-muted-foreground text-sm">{b.author}</TableCell>
+                  <TableCell data-label="แท็ก">
                     <div className="flex flex-wrap gap-1">
                       {b.tags?.slice(0, 2).map((t) => (
                         <Badge key={t} variant="secondary" className="text-xs">{t}</Badge>
@@ -135,16 +135,16 @@ export default function BlogsPage() {
                       {b.tags?.length > 2 && <span className="text-xs text-muted-foreground">+{b.tags.length - 2}</span>}
                     </div>
                   </TableCell>
-                  <TableCell>
+                  <TableCell data-label="สถานะ">
                     <Badge variant="outline" className={b.published ? "bg-green-50 text-green-700 border-green-200" : "bg-gray-100 text-gray-600"}>
                       {b.published ? "เผยแพร่" : "ร่าง"}
                     </Badge>
                   </TableCell>
-                  <TableCell className="text-muted-foreground text-sm">{(b.publishedAt ?? b.createdAt)?.slice(0, 10)}</TableCell>
-                  <TableCell>
+                  <TableCell data-label="วันที่" className="text-muted-foreground text-sm">{(b.publishedAt ?? b.createdAt)?.slice(0, 10)}</TableCell>
+                  <TableCell data-label="จัดการ">
                     <div className="flex gap-1">
-                      <Button size="icon" variant="ghost" className="size-7" onClick={() => openEdit(b)}><Pencil className="size-3.5" /></Button>
-                      <Button size="icon" variant="ghost" className="size-7 text-red-500 hover:bg-red-50" onClick={() => del(b.id)}><Trash2 className="size-3.5" /></Button>
+                      <Button size="icon" variant="ghost" className="size-7" aria-label="แก้ไขรายการ" onClick={() => openEdit(b)}><Pencil className="size-3.5" /></Button>
+                      <Button size="icon" variant="ghost" className="size-7 text-red-500 hover:bg-red-50" aria-label="ลบรายการ" onClick={() => del(b.id)}><Trash2 className="size-3.5" /></Button>
                     </div>
                   </TableCell>
                 </TableRow>
@@ -155,7 +155,7 @@ export default function BlogsPage() {
       )}
 
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="max-w-2xl">
+        <DialogContent className="sm:max-w-2xl">
           <DialogHeader><DialogTitle>{editing ? "แก้ไขบทความ" : "เขียนบทความใหม่"}</DialogTitle></DialogHeader>
           <div className="space-y-3 py-2 max-h-[65vh] overflow-y-auto pr-1">
             <div className="space-y-1.5">
@@ -177,7 +177,7 @@ export default function BlogsPage() {
               <Label>เนื้อหา (Markdown)</Label>
               <Textarea rows={8} className="font-mono text-sm" value={form.content} onChange={(e) => setForm({ ...form, content: e.target.value })} placeholder="# หัวข้อ&#10;&#10;เนื้อหาบทความ..." />
             </div>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
               <div className="space-y-1.5">
                 <Label>รูปปก (URL)</Label>
                 <Input placeholder="https://..." value={form.coverImage} onChange={(e) => setForm({ ...form, coverImage: e.target.value })} />

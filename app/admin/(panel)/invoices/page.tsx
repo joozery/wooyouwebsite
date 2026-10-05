@@ -83,8 +83,8 @@ export default function InvoicesPage() {
   }
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
+    <div className="min-w-0 space-y-6">
+      <div className="flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center">
         <div>
           <h1 className="text-2xl font-bold tracking-tight">ใบแจ้งหนี้</h1>
           <p className="text-muted-foreground text-sm mt-1">จัดการใบแจ้งหนี้ทั้งหมด</p>
@@ -120,7 +120,7 @@ export default function InvoicesPage() {
         </CardContent></Card>
       ) : (
         <Card>
-          <Table>
+          <Table className="admin-mobile-list" role="table">
             <TableHeader>
               <TableRow>
                 <TableHead>เลขที่</TableHead>
@@ -135,20 +135,20 @@ export default function InvoicesPage() {
             <TableBody>
               {filtered.map((inv) => (
                 <TableRow key={inv.id}>
-                  <TableCell className="font-medium">{inv.invoiceNumber || "—"}</TableCell>
-                  <TableCell>{inv.customerName}</TableCell>
-                  <TableCell className="text-muted-foreground text-sm">{inv.date?.slice(0, 10)}</TableCell>
-                  <TableCell className="text-muted-foreground text-sm">{inv.dueDate?.slice(0, 10) || "—"}</TableCell>
-                  <TableCell>฿{inv.total?.toLocaleString("th-TH")}</TableCell>
-                  <TableCell>
+                  <TableCell data-label="เลขที่" className="font-medium">{inv.invoiceNumber || "—"}</TableCell>
+                  <TableCell data-label="ลูกค้า">{inv.customerName}</TableCell>
+                  <TableCell data-label="วันที่" className="text-muted-foreground text-sm">{inv.date?.slice(0, 10)}</TableCell>
+                  <TableCell data-label="ครบกำหนด" className="text-muted-foreground text-sm">{inv.dueDate?.slice(0, 10) || "—"}</TableCell>
+                  <TableCell data-label="มูลค่า">฿{inv.total?.toLocaleString("th-TH")}</TableCell>
+                  <TableCell data-label="สถานะ">
                     <Badge variant="outline" className={statusMap[inv.status]?.className}>
                       {statusMap[inv.status]?.label}
                     </Badge>
                   </TableCell>
-                  <TableCell>
+                  <TableCell data-label="จัดการ">
                     <div className="flex gap-1">
-                      <Button size="icon" variant="ghost" className="size-7" onClick={() => openEdit(inv)}><Pencil className="size-3.5" /></Button>
-                      <Button size="icon" variant="ghost" className="size-7 text-red-500 hover:bg-red-50" onClick={() => del(inv.id)}><Trash2 className="size-3.5" /></Button>
+                      <Button size="icon" variant="ghost" className="size-7" aria-label="แก้ไขรายการ" onClick={() => openEdit(inv)}><Pencil className="size-3.5" /></Button>
+                      <Button size="icon" variant="ghost" className="size-7 text-red-500 hover:bg-red-50" aria-label="ลบรายการ" onClick={() => del(inv.id)}><Trash2 className="size-3.5" /></Button>
                     </div>
                   </TableCell>
                 </TableRow>
@@ -166,7 +166,7 @@ export default function InvoicesPage() {
               <Label>ชื่อลูกค้า *</Label>
               <Input value={form.customerName} onChange={(e) => setForm({ ...form, customerName: e.target.value })} />
             </div>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
               <div className="space-y-1.5">
                 <Label>วันที่ออก</Label>
                 <Input type="date" value={form.date} onChange={(e) => setForm({ ...form, date: e.target.value })} />
@@ -182,7 +182,7 @@ export default function InvoicesPage() {
               <div className="space-y-1.5">
                 <Label>สถานะ</Label>
                 <Select value={form.status} onValueChange={(v) => setForm({ ...form, status: v as Invoice["status"] })}>
-                  <SelectTrigger><SelectValue /></SelectTrigger>
+                  <SelectTrigger className="w-full"><SelectValue /></SelectTrigger>
                   <SelectContent>
                     {Object.entries(statusMap).map(([k, v]) => <SelectItem key={k} value={k}>{v.label}</SelectItem>)}
                   </SelectContent>

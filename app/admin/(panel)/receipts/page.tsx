@@ -87,8 +87,8 @@ export default function ReceiptsPage() {
   }
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
+    <div className="min-w-0 space-y-6">
+      <div className="flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center">
         <div>
           <h1 className="text-2xl font-bold tracking-tight">ใบเสร็จรับเงิน</h1>
           <p className="text-muted-foreground text-sm mt-1">จัดการใบเสร็จรับเงินทั้งหมด</p>
@@ -109,7 +109,7 @@ export default function ReceiptsPage() {
         </CardContent></Card>
       ) : (
         <Card>
-          <Table>
+          <Table className="admin-mobile-list" role="table">
             <TableHeader>
               <TableRow>
                 <TableHead>เลขที่ใบเสร็จ</TableHead>
@@ -125,21 +125,21 @@ export default function ReceiptsPage() {
             <TableBody>
               {filtered.map((r) => (
                 <TableRow key={r.id}>
-                  <TableCell className="font-medium">{r.receiptNumber || "—"}</TableCell>
-                  <TableCell>{r.customerName}</TableCell>
-                  <TableCell className="text-muted-foreground text-sm">{r.date?.slice(0, 10)}</TableCell>
-                  <TableCell>{paymentLabels[r.paymentMethod] ?? r.paymentMethod}</TableCell>
-                  <TableCell className="text-muted-foreground text-sm">{r.referenceNumber || "—"}</TableCell>
-                  <TableCell className="font-semibold">฿{r.amount?.toLocaleString("th-TH")}</TableCell>
-                  <TableCell>
+                  <TableCell data-label="เลขที่ใบเสร็จ" className="font-medium">{r.receiptNumber || "—"}</TableCell>
+                  <TableCell data-label="ลูกค้า">{r.customerName}</TableCell>
+                  <TableCell data-label="วันที่" className="text-muted-foreground text-sm">{r.date?.slice(0, 10)}</TableCell>
+                  <TableCell data-label="ช่องทางชำระ">{paymentLabels[r.paymentMethod] ?? r.paymentMethod}</TableCell>
+                  <TableCell data-label="เลขอ้างอิง" className="text-muted-foreground text-sm">{r.referenceNumber || "—"}</TableCell>
+                  <TableCell data-label="จำนวนเงิน" className="font-semibold">฿{r.amount?.toLocaleString("th-TH")}</TableCell>
+                  <TableCell data-label="สถานะ">
                     <Badge variant="outline" className={statusMap[r.status]?.className}>
                       {statusMap[r.status]?.label}
                     </Badge>
                   </TableCell>
-                  <TableCell>
+                  <TableCell data-label="จัดการ">
                     <div className="flex gap-1">
-                      <Button size="icon" variant="ghost" className="size-7" onClick={() => openEdit(r)}><Pencil className="size-3.5" /></Button>
-                      <Button size="icon" variant="ghost" className="size-7 text-red-500 hover:bg-red-50" onClick={() => del(r.id)}><Trash2 className="size-3.5" /></Button>
+                      <Button size="icon" variant="ghost" className="size-7" aria-label="แก้ไขรายการ" onClick={() => openEdit(r)}><Pencil className="size-3.5" /></Button>
+                      <Button size="icon" variant="ghost" className="size-7 text-red-500 hover:bg-red-50" aria-label="ลบรายการ" onClick={() => del(r.id)}><Trash2 className="size-3.5" /></Button>
                     </div>
                   </TableCell>
                 </TableRow>
@@ -157,7 +157,7 @@ export default function ReceiptsPage() {
               <Label>ชื่อลูกค้า *</Label>
               <Input value={form.customerName} onChange={(e) => setForm({ ...form, customerName: e.target.value })} />
             </div>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
               <div className="space-y-1.5">
                 <Label>วันที่</Label>
                 <Input type="date" value={form.date} onChange={(e) => setForm({ ...form, date: e.target.value })} />
@@ -169,7 +169,7 @@ export default function ReceiptsPage() {
               <div className="space-y-1.5">
                 <Label>ช่องทางชำระ</Label>
                 <Select value={form.paymentMethod} onValueChange={(v) => setForm({ ...form, paymentMethod: v as Receipt["paymentMethod"] })}>
-                  <SelectTrigger><SelectValue /></SelectTrigger>
+                  <SelectTrigger className="w-full"><SelectValue /></SelectTrigger>
                   <SelectContent>
                     {Object.entries(paymentLabels).map(([k, v]) => <SelectItem key={k} value={k}>{v}</SelectItem>)}
                   </SelectContent>
@@ -178,7 +178,7 @@ export default function ReceiptsPage() {
               <div className="space-y-1.5">
                 <Label>สถานะ</Label>
                 <Select value={form.status} onValueChange={(v) => setForm({ ...form, status: v as Receipt["status"] })}>
-                  <SelectTrigger><SelectValue /></SelectTrigger>
+                  <SelectTrigger className="w-full"><SelectValue /></SelectTrigger>
                   <SelectContent>
                     {Object.entries(statusMap).map(([k, v]) => <SelectItem key={k} value={k}>{v.label}</SelectItem>)}
                   </SelectContent>

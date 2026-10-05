@@ -70,8 +70,8 @@ export default function EmployeesPage() {
   }
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
+    <div className="min-w-0 space-y-6">
+      <div className="flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center">
         <div>
           <h1 className="text-2xl font-bold tracking-tight">พนักงาน</h1>
           <p className="text-muted-foreground text-sm mt-1">จัดการข้อมูลพนักงานทั้งหมด</p>
@@ -92,7 +92,7 @@ export default function EmployeesPage() {
         </CardContent></Card>
       ) : (
         <Card>
-          <Table>
+          <Table className="admin-mobile-list" role="table">
             <TableHeader>
               <TableRow>
                 <TableHead>ชื่อ</TableHead>
@@ -107,16 +107,16 @@ export default function EmployeesPage() {
             <TableBody>
               {filtered.map((e) => (
                 <TableRow key={e.id}>
-                  <TableCell className="font-medium">{e.name}</TableCell>
-                  <TableCell>{e.position}</TableCell>
-                  <TableCell className="text-muted-foreground">{e.department}</TableCell>
-                  <TableCell className="text-muted-foreground text-sm">{e.email}</TableCell>
-                  <TableCell>{e.phone}</TableCell>
-                  <TableCell>฿{e.salary?.toLocaleString("th-TH")}</TableCell>
-                  <TableCell>
+                  <TableCell data-label="ชื่อ" className="font-medium">{e.name}</TableCell>
+                  <TableCell data-label="ตำแหน่ง">{e.position}</TableCell>
+                  <TableCell data-label="แผนก" className="text-muted-foreground">{e.department}</TableCell>
+                  <TableCell data-label="อีเมล" className="text-muted-foreground text-sm">{e.email}</TableCell>
+                  <TableCell data-label="เบอร์โทร">{e.phone}</TableCell>
+                  <TableCell data-label="เงินเดือน">฿{e.salary?.toLocaleString("th-TH")}</TableCell>
+                  <TableCell data-label="จัดการ">
                     <div className="flex gap-1">
-                      <Button size="icon" variant="ghost" className="size-7" onClick={() => openEdit(e)}><Pencil className="size-3.5" /></Button>
-                      <Button size="icon" variant="ghost" className="size-7 text-red-500 hover:bg-red-50" onClick={() => del(e.id)}><Trash2 className="size-3.5" /></Button>
+                      <Button size="icon" variant="ghost" className="size-7" aria-label="แก้ไขรายการ" onClick={() => openEdit(e)}><Pencil className="size-3.5" /></Button>
+                      <Button size="icon" variant="ghost" className="size-7 text-red-500 hover:bg-red-50" aria-label="ลบรายการ" onClick={() => del(e.id)}><Trash2 className="size-3.5" /></Button>
                     </div>
                   </TableCell>
                 </TableRow>
@@ -127,10 +127,10 @@ export default function EmployeesPage() {
       )}
 
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="max-w-lg">
+        <DialogContent className="sm:max-w-lg">
           <DialogHeader><DialogTitle>{editing ? "แก้ไขพนักงาน" : "เพิ่มพนักงานใหม่"}</DialogTitle></DialogHeader>
-          <div className="grid grid-cols-2 gap-3 py-2">
-            <div className="col-span-2 space-y-1.5"><Label>ชื่อ-นามสกุล *</Label><Input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} /></div>
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 py-2">
+            <div className="col-span-full space-y-1.5"><Label>ชื่อ-นามสกุล *</Label><Input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} /></div>
             <div className="space-y-1.5"><Label>ตำแหน่ง</Label><Input value={form.position} onChange={(e) => setForm({ ...form, position: e.target.value })} /></div>
             <div className="space-y-1.5"><Label>แผนก</Label><Input value={form.department} onChange={(e) => setForm({ ...form, department: e.target.value })} /></div>
             <div className="space-y-1.5"><Label>อีเมล</Label><Input type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} /></div>

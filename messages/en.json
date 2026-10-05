@@ -1,4 +1,30 @@
 {
+  "customerPage": {
+    "title": "Clients who trust us",
+    "titleBlue": "Clients who ",
+    "titleRest": "trust us",
+    "intro": "Every project is a collaboration we value. We work with businesses to build digital solutions for real-world needs.",
+    "directory": "View clients",
+    "filter": "Filter clients",
+    "search": "Search clients…",
+    "results": "{count} clients found",
+    "empty": "No clients match this search in this category.",
+    "partnershipTitle": "More than a supplier",
+    "partnershipAccent": "a team working alongside you",
+    "partnershipBody": "We believe in long-term collaboration, from understanding goals and planning to design, development, ongoing support and improvement.",
+    "featured": "Selected client projects",
+    "careTitle": "What to expect when working with us",
+    "ctaTitle": "Your business could be our next project",
+    "ctaBody": "Talk to our team to find an approach that fits your needs.",
+    "categories": {
+      "all": "All",
+      "corporate": "Corporate",
+      "sme": "SME",
+      "government": "Government",
+      "startup": "Startup",
+      "other": "Other"
+    }
+  },
   "portfolioPage": {
     "title": "Our work",
     "intro": "We build websites, platforms and business systems with clear brand communication and technology designed for real-world use.",
@@ -11,6 +37,7 @@
     "close": "Close project details",
     "resultCount": "{count} projects found",
     "descriptions": {
+      "preview": "Temporary images and details for project 05, to be replaced with the actual work later.",
       "sistomat": "A business system for SISTOMAT with a clearly structured login interface and an industrial brand identity.",
       "gography": "A travel website presenting tours with photographers, tour search and accessible enquiry channels.",
       "sacit": "A website for SACIT Symposium presenting event photos, updates and participant information.",
@@ -243,7 +270,8 @@
       "erp-systems": "End-to-end business system, from quotations to accounting",
       "game-development": "2D/3D games and interactive experiences on every platform",
       "mobile-apps": "iOS and Android apps built around your business"
-    }
+    },
+    "viewAll": "Explore all services"
   },
   "customers": {
     "title": "Trusted by our clients",
@@ -403,5 +431,48 @@
     "ctaT": "Ready to build something great together?",
     "ctaB": "Free consultation, no obligation. Our team is ready to advise what suits your business.",
     "ctaBtn": "Contact us"
+  },
+  "erpDetail": {
+    "heroTitle": "Connect your business.",
+    "heroAccent": "Move forward together.",
+    "contact": "Talk about your ERP",
+    "explore": "Explore modules",
+    "modulesTitle": "A system that grows with your business",
+    "modulesIntro": "Start with what your team needs, then expand around real workflows.",
+    "sales": "Sales & Customers",
+    "salesBody": "Connect customer information, sales and quotations so teams can work from shared data.",
+    "finance": "Documents & Finance",
+    "financeBody": "Connect quotations, invoices, tax invoices and receipts to reduce repeated data entry.",
+    "inventory": "Inventory & Purchasing",
+    "inventoryBody": "Design stock movements and purchasing around your business processes.",
+    "people": "People & Teams",
+    "peopleBody": "Organize team information and HR workflows around your organization.",
+    "reports": "Reports & Insights",
+    "reportsBody": "Turn essential data into reports and dashboards that make work easier to follow.",
+    "custom": "Custom Business Systems",
+    "customBody": "Design modules and integrations around the specific needs of your team.",
+    "benefit1": "Connected information",
+    "benefit1Body": "Keep departments aligned and reduce the need to exchange multiple versions of files.",
+    "benefit2": "Clear workflows",
+    "benefit2Body": "Design processes and permissions around each team’s responsibilities.",
+    "benefit3": "Room to grow",
+    "benefit3Body": "Build a foundation for adding modules as your organization grows.",
+    "workTitle": "From business needs to working systems",
+    "workBody": "Sistomat — an example of a management system we designed and developed.",
+    "workLink": "Explore our work",
+    "processTitle": "Understand the work. Then design the system.",
+    "process1": "Understand your team’s challenges, data and current processes.",
+    "process2": "Define the modules and design interfaces to establish a shared direction.",
+    "process3": "Develop and test real scenarios while gathering feedback from your team.",
+    "process4": "Prepare data, guide your team and plan support after delivery.",
+    "faqTitle": "Before you start your ERP",
+    "q1": "Do we need every module at once?",
+    "a1": "No. Start with the highest priority and expand in stages as your team is ready.",
+    "q2": "Can you connect our existing systems?",
+    "a2": "We review APIs, data formats and system limitations before defining an integration plan.",
+    "q3": "How long does development take, and what does it cost?",
+    "a3": "It depends on modules, complexity and integrations. After understanding your requirements, we provide a scope, timeline and quotation before work begins.",
+    "ctaTitle": "Make your system fit your business.",
+    "ctaBody": "Tell us where your team gets stuck. We will help identify the right approach."
   }
 }

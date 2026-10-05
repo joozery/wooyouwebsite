@@ -24,15 +24,15 @@ function StatCard({
   icon: React.ElementType; color: string;
 }) {
   return (
-    <Card>
-      <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-        <CardTitle className="text-sm font-medium text-muted-foreground">{title}</CardTitle>
-        <div className={`flex size-8 items-center justify-center rounded-full ${color}`}>
+    <Card className="min-w-0">
+      <CardHeader className="flex flex-row items-start justify-between gap-2 px-4 pb-2 space-y-0 sm:px-6">
+        <CardTitle className="text-xs leading-5 font-medium text-muted-foreground sm:text-sm">{title}</CardTitle>
+        <div className={`flex size-8 shrink-0 items-center justify-center rounded-full ${color}`}>
           <Icon className="size-4 text-white" />
         </div>
       </CardHeader>
-      <CardContent>
-        <div className="text-2xl font-bold">{value}</div>
+      <CardContent className="min-w-0 px-4 sm:px-6">
+        <div className="text-xl font-bold sm:text-2xl">{value}</div>
         <p className="text-xs text-muted-foreground mt-1">{sub}</p>
       </CardContent>
     </Card>
@@ -56,14 +56,14 @@ export default function DashboardPage() {
       : `฿${n.toLocaleString("th-TH")}`;
 
   return (
-    <div className="space-y-6">
+    <div className="min-w-0 space-y-6">
       <div>
-        <h1 className="text-2xl font-bold tracking-tight">Dashboard</h1>
+        <h1 className="text-xl font-bold sm:text-2xl tracking-tight">Dashboard</h1>
         <p className="text-muted-foreground text-sm mt-1">ภาพรวมธุรกิจ Wooyou Creative</p>
       </div>
 
       {/* KPI Cards */}
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-3 min-[400px]:grid-cols-2 xl:grid-cols-4">
         <StatCard
           title="รายได้เดือนนี้" icon={DollarSign} color="bg-emerald-500"
           value={loading ? "..." : fmt(stats?.revenue.currentMonth ?? 0)}
@@ -87,7 +87,7 @@ export default function DashboardPage() {
       </div>
 
       {/* Revenue Chart */}
-      <Card>
+      <Card className="min-w-0">
         <CardHeader>
           <div className="flex items-center gap-2">
             <TrendingUp className="size-4 text-muted-foreground" />
@@ -95,14 +95,14 @@ export default function DashboardPage() {
           </div>
           <CardDescription>รายรับจากใบเสนอราคาที่ชำระแล้วในปีนี้</CardDescription>
         </CardHeader>
-        <CardContent>
+        <CardContent className="min-w-0 px-4 sm:px-6">
           {loading ? (
             <div className="h-60 flex items-center justify-center text-muted-foreground text-sm">
               กำลังโหลด...
             </div>
           ) : (
-            <ResponsiveContainer width="100%" height={260}>
-              <BarChart data={stats?.revenue.monthly ?? []} margin={{ top: 4, right: 8, left: 8, bottom: 0 }}>
+            <ResponsiveContainer width="100%" height={240}>
+              <BarChart data={stats?.revenue.monthly ?? []} margin={{ top: 4, right: 4, left: -12, bottom: 0 }}>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f0f0f0" />
                 <XAxis dataKey="monthName" tick={{ fontSize: 12 }} axisLine={false} tickLine={false} />
                 <YAxis

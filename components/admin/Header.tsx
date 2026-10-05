@@ -1,7 +1,8 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { Bell, Search, Menu } from "lucide-react";
+import { Search, Menu } from "lucide-react";
+import { DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
@@ -24,12 +25,13 @@ export function Header() {
   }
 
   return (
-    <header className="h-16 border-b border-gray-200 bg-white flex items-center justify-between px-6 sticky top-0 z-10 shadow-sm">
-      <div className="flex items-center gap-4">
-        <Button variant="ghost" size="icon" className="md:hidden">
+    <header className="h-16 border-b border-gray-200 bg-white flex items-center justify-between px-4 sm:px-6 sticky top-0 z-10 shadow-sm">
+      <div className="flex min-w-0 items-center gap-3">
+        <DialogTrigger asChild><Button variant="ghost" size="icon" aria-label="เปิดเมนู" className="size-11 lg:hidden">
           <Menu className="h-5 w-5" />
-        </Button>
-        <div className="relative w-64 hidden sm:block">
+        </Button></DialogTrigger>
+        <span className="text-sm font-semibold text-slate-800 sm:hidden">Wooyou Workspace</span>
+        <div className="relative w-48 hidden sm:block lg:w-64">
           <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
           <Input
             type="search"
@@ -39,15 +41,11 @@ export function Header() {
         </div>
       </div>
 
-      <div className="flex items-center gap-4">
-        <Button variant="ghost" size="icon" className="relative">
-          <Bell className="h-5 w-5" />
-          <span className="absolute top-1.5 right-2 h-2 w-2 rounded-full bg-red-600" />
-        </Button>
+      <div className="flex min-w-0 items-center gap-3">
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="relative h-8 w-8 rounded-full">
+            <Button variant="ghost" aria-label="เมนูบัญชีผู้ใช้งาน" className="relative h-11 w-11 rounded-full">
               <Avatar className="h-8 w-8">
                 <AvatarFallback>AD</AvatarFallback>
               </Avatar>
@@ -58,7 +56,7 @@ export function Header() {
               <div className="flex flex-col space-y-1">
                 <p className="text-sm font-medium leading-none">Admin</p>
                 <p className="text-xs leading-none text-muted-foreground">
-                  admin@wooyoucreative.com
+                  ระบบภายในบริษัท
                 </p>
               </div>
             </DropdownMenuLabel>

@@ -1,3 +1,5 @@
+import ERPDetailPage from "@/components/website/ERPDetailPage";
+import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
@@ -20,6 +22,10 @@ export async function generateMetadata({
   params: Promise<{ serviceType: string }>;
 }): Promise<Metadata> {
   const { serviceType } = await params;
+  if (serviceType === "erp-systems") {
+    const t = await getTranslations("erpDetail");
+    return { title: "ERP & Business Systems | Wooyou Creative", description: `${t("heroTitle")} ${t("heroAccent")} — ${t("modulesIntro")}` };
+  }
   return {
     title: `${serviceType} | Wooyou Creative`,
   };
@@ -35,6 +41,8 @@ export default async function ServiceDetailPage({
   if (!serviceTypes.includes(serviceType as (typeof serviceTypes)[number])) {
     notFound();
   }
+
+  if (serviceType === "erp-systems") return <ERPDetailPage />;
 
   return (
     <main className="min-h-screen">

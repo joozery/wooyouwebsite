@@ -74,8 +74,8 @@ export default function ClientsPage() {
   }
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
+    <div className="min-w-0 space-y-6">
+      <div className="flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center">
         <div>
           <h1 className="text-2xl font-bold tracking-tight">Client Logos</h1>
           <p className="text-muted-foreground text-sm mt-1">จัดการโลโก้ลูกค้าที่แสดงบนเว็บไซต์</p>

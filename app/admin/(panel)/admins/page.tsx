@@ -83,8 +83,8 @@ export default function AdminsPage() {
   }
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
+    <div className="min-w-0 space-y-6">
+      <div className="flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center">
         <div>
           <h1 className="text-2xl font-bold tracking-tight">ผู้ดูแลระบบ</h1>
           <p className="text-muted-foreground text-sm mt-1">จัดการบัญชีผู้ดูแลระบบ</p>
@@ -105,7 +105,7 @@ export default function AdminsPage() {
         </CardContent></Card>
       ) : (
         <Card>
-          <Table>
+          <Table className="admin-mobile-list" role="table">
             <TableHeader>
               <TableRow>
                 <TableHead>ชื่อ</TableHead>
@@ -120,24 +120,24 @@ export default function AdminsPage() {
             <TableBody>
               {filtered.map((a) => (
                 <TableRow key={a.id}>
-                  <TableCell className="font-medium">{a.name}</TableCell>
-                  <TableCell className="text-muted-foreground text-sm">{a.email}</TableCell>
-                  <TableCell className="text-muted-foreground text-sm">{a.position || "—"}</TableCell>
-                  <TableCell>
+                  <TableCell data-label="ชื่อ" className="font-medium">{a.name}</TableCell>
+                  <TableCell data-label="อีเมล" className="text-muted-foreground text-sm">{a.email}</TableCell>
+                  <TableCell data-label="ตำแหน่ง" className="text-muted-foreground text-sm">{a.position || "—"}</TableCell>
+                  <TableCell data-label="สิทธิ์">
                     <Badge variant="outline" className={roleMap[a.role]?.className ?? ""}>
                       {roleMap[a.role]?.label ?? a.role}
                     </Badge>
                   </TableCell>
-                  <TableCell>
+                  <TableCell data-label="สถานะ">
                     <Badge variant="outline" className={a.status === "active" ? "bg-green-50 text-green-700 border-green-200" : "bg-gray-100 text-gray-500"}>
                       {a.status === "active" ? "ใช้งาน" : "ปิดใช้"}
                     </Badge>
                   </TableCell>
-                  <TableCell className="text-muted-foreground text-xs">{a.lastLogin?.slice(0, 10) ?? "—"}</TableCell>
-                  <TableCell>
+                  <TableCell data-label="เข้าใช้ล่าสุด" className="text-muted-foreground text-xs">{a.lastLogin?.slice(0, 10) ?? "—"}</TableCell>
+                  <TableCell data-label="จัดการ">
                     <div className="flex gap-1">
-                      <Button size="icon" variant="ghost" className="size-7" onClick={() => openEdit(a)}><Pencil className="size-3.5" /></Button>
-                      <Button size="icon" variant="ghost" className="size-7 text-red-500 hover:bg-red-50" onClick={() => del(a.id)}><Trash2 className="size-3.5" /></Button>
+                      <Button size="icon" variant="ghost" className="size-7" aria-label="แก้ไขรายการ" onClick={() => openEdit(a)}><Pencil className="size-3.5" /></Button>
+                      <Button size="icon" variant="ghost" className="size-7 text-red-500 hover:bg-red-50" aria-label="ลบรายการ" onClick={() => del(a.id)}><Trash2 className="size-3.5" /></Button>
                     </div>
                   </TableCell>
                 </TableRow>
@@ -150,15 +150,15 @@ export default function AdminsPage() {
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent>
           <DialogHeader><DialogTitle>{editing ? "แก้ไขผู้ดูแลระบบ" : "เพิ่มผู้ดูแลระบบ"}</DialogTitle></DialogHeader>
-          <div className="grid grid-cols-2 gap-3 py-2">
-            <div className="col-span-2 space-y-1.5"><Label>ชื่อ-นามสกุล *</Label><Input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} /></div>
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 py-2">
+            <div className="col-span-full space-y-1.5"><Label>ชื่อ-นามสกุล *</Label><Input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} /></div>
             <div className="space-y-1.5"><Label>อีเมล *</Label><Input type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} /></div>
             <div className="space-y-1.5"><Label>เบอร์โทร</Label><Input value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} /></div>
             <div className="space-y-1.5"><Label>ตำแหน่ง</Label><Input value={form.position} onChange={(e) => setForm({ ...form, position: e.target.value })} /></div>
             <div className="space-y-1.5">
               <Label>สิทธิ์</Label>
               <Select value={form.role} onValueChange={(v) => setForm({ ...form, role: v as Admin["role"] })}>
-                <SelectTrigger><SelectValue /></SelectTrigger>
+                <SelectTrigger className="w-full"><SelectValue /></SelectTrigger>
                 <SelectContent>
                   {Object.entries(roleMap).map(([k, v]) => <SelectItem key={k} value={k}>{v.label}</SelectItem>)}
                 </SelectContent>
@@ -167,14 +167,14 @@ export default function AdminsPage() {
             <div className="space-y-1.5">
               <Label>สถานะ</Label>
               <Select value={form.status} onValueChange={(v) => setForm({ ...form, status: v as Admin["status"] })}>
-                <SelectTrigger><SelectValue /></SelectTrigger>
+                <SelectTrigger className="w-full"><SelectValue /></SelectTrigger>
                 <SelectContent>
                   <SelectItem value="active">ใช้งาน</SelectItem>
                   <SelectItem value="inactive">ปิดใช้</SelectItem>
                 </SelectContent>
               </Select>
             </div>
-            <div className="col-span-2 space-y-1.5">
+            <div className="col-span-full space-y-1.5">
               <Label>{editing ? "รหัสผ่านใหม่ (ว่างไว้ = ไม่เปลี่ยน)" : "รหัสผ่าน *"}</Label>
               <Input type="password" value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} />
             </div>

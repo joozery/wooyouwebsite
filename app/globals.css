@@ -213,3 +213,43 @@
     display: none;
   }
 }
+/* Admin lists become labelled cards on phones; desktop retains table layout. */
+@media (width < 640px) {
+  .admin-mobile-list { display: block; min-width: 0; width: 100%; }
+  .admin-mobile-list > thead {
+    position: absolute; width: 1px; height: 1px; padding: 0;
+    overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+  }
+  .admin-mobile-list > tbody { display: grid; gap: 12px; padding: 12px; }
+  .admin-mobile-list > tbody > tr {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 16px 12px; padding: 16px;
+    border: 1px solid var(--border); border-radius: 12px;
+    background: var(--card);
+  }
+  .admin-mobile-list > tbody > tr > td {
+    display: block; min-width: 0; padding: 0; text-align: left;
+    white-space: normal; overflow-wrap: anywhere;
+  }
+  .admin-mobile-list > tbody > tr > td::before {
+    content: attr(data-label); display: block; margin-bottom: 6px;
+    font-size: 11px; font-weight: 400; color: var(--muted-foreground);
+  }
+  .admin-mobile-list > tbody > tr > td:first-child {
+    grid-column: 1 / -1; font-size: 15px; font-weight: 600;
+  }
+  .admin-mobile-list > tbody > tr > td:last-child {
+    grid-column: 1 / -1; padding-top: 12px;
+    border-top: 1px solid var(--border);
+  }
+  .admin-mobile-list td > div.flex { flex-wrap: wrap; justify-content: flex-start; }
+  .admin-mobile-list td button { flex-shrink: 0; }
+  .admin-mobile-list td span { min-width: 0; overflow-wrap: anywhere; }
+}
+
+/* Keep services in view while the native page scroll reveals all six items. */
+@media (min-width: 1024px) and (min-height: 720px) and (prefers-reduced-motion: no-preference) {
+  .service-scroll-stage { height: 400svh; }
+  .service-scroll-panel { position: sticky; top: 96px; min-height: clamp(440px, calc(100svh - 160px), 620px); }
+}

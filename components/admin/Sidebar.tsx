@@ -1,12 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter, usePathname } from "next/navigation";
 import {
   LayoutDashboard, Users, Settings, FileText,
   LogOut, BookOpen, Image as ImageIcon, UserCircle, Receipt,
   ScrollText, Calculator, ShieldCheck, KeyRound,
-  FolderKanban, ChevronRight, PanelLeftClose
+  FolderKanban, ChevronRight, PanelLeftClose, X
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -46,6 +47,8 @@ const sections: { label: string; items: NavItem[] }[] = [
   {
     label: "เนื้อหาเว็บ & สื่อ",
     items: [
+      { name: "เรื่องราวของเรา", href: "/admin/story", icon: BookOpen },
+      { name: "ผลงานบนเว็บไซต์", href: "/admin/portfolio", icon: ImageIcon },
       { name: "Client Logos", href: "/admin/clients", icon: ImageIcon },
       { name: "บทความ / บล็อก",href: "/admin/blogs",   icon: BookOpen },
     ],
@@ -63,9 +66,11 @@ const sections: { label: string; items: NavItem[] }[] = [
 interface SidebarProps {
   collapsed?: boolean;
   onToggle?: () => void;
+  onNavigate?: () => void;
+  mobile?: boolean;
 }
 
-export function Sidebar({ collapsed = false, onToggle }: SidebarProps) {
+export function Sidebar({ collapsed = false, onToggle, onNavigate, mobile = false }: SidebarProps) {
   const pathname = usePathname();
   const router   = useRouter();
 
@@ -76,13 +81,15 @@ export function Sidebar({ collapsed = false, onToggle }: SidebarProps) {
   }
 
   return (
-    <div className="flex flex-col h-full select-none bg-[#FAFAFA] border-r border-slate-200/70">
+    <div className="flex flex-col h-full min-h-0 select-none bg-[#FAFAFA] border-r border-slate-200/70">
 
       {/* ── Logo & Brand Bar ── */}
       <div className="h-[64px] flex items-center justify-between px-4 shrink-0 border-b border-slate-200/60 bg-white">
         {collapsed ? (
           <div className="w-full flex items-center justify-center">
-            <img
+            <Image
+              width={140}
+              height={41}
               src="/logo/logolong.svg"
               alt="Wooyou Logo"
               className="h-7 w-auto object-contain cursor-pointer hover:opacity-80 transition-opacity"
@@ -91,7 +98,9 @@ export function Sidebar({ collapsed = false, onToggle }: SidebarProps) {
           </div>
         ) : (
           <div className="flex items-center gap-2.5 overflow-hidden min-w-0">
-            <img
+            <Image
+              width={140}
+              height={41}
               src="/logo/logolong.svg"
               alt="Wooyou Creative"
               className="h-8 w-auto object-contain max-w-[140px]"
@@ -107,9 +116,10 @@ export function Sidebar({ collapsed = false, onToggle }: SidebarProps) {
           <button
             onClick={onToggle}
             className="shrink-0 flex items-center justify-center w-8 h-8 rounded-lg text-slate-400 hover:text-slate-800 hover:bg-slate-100 active:scale-95 transition-all duration-200"
-            title="ย่อเมนู"
+            title={mobile ? "ปิดเมนู" : "ย่อเมนู"}
+            aria-label={mobile ? "ปิดเมนู" : "ย่อเมนู"}
           >
-            <PanelLeftClose className="w-4 h-4" />
+            {mobile ? <X className="w-4 h-4" /> : <PanelLeftClose className="w-4 h-4" />}
           </button>
         )}
       </div>
@@ -141,8 +151,11 @@ export function Sidebar({ collapsed = false, onToggle }: SidebarProps) {
                   <div key={item.href} className="relative group/item">
                     <Link
                       href={item.href}
+                      onClick={onNavigate}
+                      aria-current={isActive ? "page" : undefined}
+                      aria-label={item.name}
                       className={cn(
-                        "flex items-center gap-3 rounded-lg text-[13px] font-medium transition-all duration-150",
+                        "flex min-h-11 items-center gap-3 rounded-lg text-[13px] font-medium transition-all duration-150",
                         collapsed ? "justify-center px-2 py-2.5" : "px-2.5 py-2",
                         isActive
                           ? "bg-slate-900 text-white font-medium shadow-sm shadow-slate-900/10"

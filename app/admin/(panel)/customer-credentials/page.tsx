@@ -94,8 +94,8 @@ export default function CustomerCredentialsPage() {
   }
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
+    <div className="min-w-0 space-y-6">
+      <div className="flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center">
         <div>
           <h1 className="text-2xl font-bold tracking-tight">Credential ลูกค้า</h1>
           <p className="text-muted-foreground text-sm mt-1">เก็บข้อมูล Username/Password บริการต่างๆ ของลูกค้า</p>
@@ -120,7 +120,7 @@ export default function CustomerCredentialsPage() {
         </CardContent></Card>
       ) : (
         <Card>
-          <Table>
+          <Table className="admin-mobile-list" role="table">
             <TableHeader>
               <TableRow>
                 <TableHead>ลูกค้า</TableHead>
@@ -134,39 +134,39 @@ export default function CustomerCredentialsPage() {
             <TableBody>
               {filtered.map((c) => (
                 <TableRow key={c.id}>
-                  <TableCell className="font-medium">{c.customerName}</TableCell>
-                  <TableCell>
+                  <TableCell data-label="ลูกค้า" className="font-medium">{c.customerName}</TableCell>
+                  <TableCell data-label="บริการ">
                     <div>
                       <p className="text-sm">{c.serviceName}</p>
                       {c.url && <a href={c.url} target="_blank" rel="noopener noreferrer" className="text-xs text-blue-500 hover:underline truncate max-w-[140px] block">{c.url}</a>}
                     </div>
                   </TableCell>
-                  <TableCell>
+                  <TableCell data-label="ประเภท">
                     <Badge variant="outline">{serviceTypeLabels[c.serviceType] ?? c.serviceType}</Badge>
                   </TableCell>
-                  <TableCell>
+                  <TableCell data-label="Username">
                     <div className="flex items-center gap-1">
                       <span className="text-sm font-mono">{c.username}</span>
-                      <Button size="icon" variant="ghost" className="size-6" onClick={() => copyToClipboard(c.username)}>
+                      <Button size="icon" variant="ghost" className="size-6" aria-label="คัดลอกชื่อผู้ใช้" onClick={() => copyToClipboard(c.username)}>
                         <Copy className="size-3" />
                       </Button>
                     </div>
                   </TableCell>
-                  <TableCell>
+                  <TableCell data-label="Password">
                     <div className="flex items-center gap-1">
                       <span className="text-sm font-mono">{revealedIds.has(c.id) ? c.password : "••••••••"}</span>
-                      <Button size="icon" variant="ghost" className="size-6" onClick={() => toggleReveal(c.id)}>
+                      <Button size="icon" variant="ghost" className="size-6" aria-label="แสดงหรือซ่อนรหัสผ่าน" onClick={() => toggleReveal(c.id)}>
                         {revealedIds.has(c.id) ? <EyeOff className="size-3" /> : <Eye className="size-3" />}
                       </Button>
-                      <Button size="icon" variant="ghost" className="size-6" onClick={() => copyToClipboard(c.password)}>
+                      <Button size="icon" variant="ghost" className="size-6" aria-label="คัดลอกรหัสผ่าน" onClick={() => copyToClipboard(c.password)}>
                         <Copy className="size-3" />
                       </Button>
                     </div>
                   </TableCell>
-                  <TableCell>
+                  <TableCell data-label="จัดการ">
                     <div className="flex gap-1">
-                      <Button size="icon" variant="ghost" className="size-7" onClick={() => openEdit(c)}><Pencil className="size-3.5" /></Button>
-                      <Button size="icon" variant="ghost" className="size-7 text-red-500 hover:bg-red-50" onClick={() => del(c.id)}><Trash2 className="size-3.5" /></Button>
+                      <Button size="icon" variant="ghost" className="size-7" aria-label="แก้ไขรายการ" onClick={() => openEdit(c)}><Pencil className="size-3.5" /></Button>
+                      <Button size="icon" variant="ghost" className="size-7 text-red-500 hover:bg-red-50" aria-label="ลบรายการ" onClick={() => del(c.id)}><Trash2 className="size-3.5" /></Button>
                     </div>
                   </TableCell>
                 </TableRow>
@@ -180,8 +180,8 @@ export default function CustomerCredentialsPage() {
         <DialogContent>
           <DialogHeader><DialogTitle>{editing ? "แก้ไข Credential" : "เพิ่ม Credential ใหม่"}</DialogTitle></DialogHeader>
           <div className="space-y-3 py-2">
-            <div className="grid grid-cols-2 gap-3">
-              <div className="col-span-2 space-y-1.5">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <div className="col-span-full space-y-1.5">
                 <Label>ลูกค้า *</Label>
                 <Input value={form.customerName} onChange={(e) => setForm({ ...form, customerName: e.target.value })} />
               </div>
@@ -192,7 +192,7 @@ export default function CustomerCredentialsPage() {
               <div className="space-y-1.5">
                 <Label>ประเภท</Label>
                 <Select value={form.serviceType} onValueChange={(v) => setForm({ ...form, serviceType: v as Credential["serviceType"] })}>
-                  <SelectTrigger><SelectValue /></SelectTrigger>
+                  <SelectTrigger className="w-full"><SelectValue /></SelectTrigger>
                   <SelectContent>
                     {Object.entries(serviceTypeLabels).map(([k, v]) => <SelectItem key={k} value={k}>{v}</SelectItem>)}
                   </SelectContent>
@@ -203,7 +203,7 @@ export default function CustomerCredentialsPage() {
               <Label>URL / ลิงก์เข้าใช้งาน</Label>
               <Input placeholder="https://..." value={form.url} onChange={(e) => setForm({ ...form, url: e.target.value })} />
             </div>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
               <div className="space-y-1.5">
                 <Label>Username / Email *</Label>
                 <Input value={form.username} onChange={(e) => setForm({ ...form, username: e.target.value })} />

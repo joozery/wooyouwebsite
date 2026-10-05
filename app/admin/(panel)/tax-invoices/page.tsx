@@ -107,7 +107,7 @@ export default function TaxInvoicesPage() {
   const totalGrand     = list.filter((t) => t.status === "issued").reduce((s, t) => s + (t.grandTotal ?? 0), 0);
 
   return (
-    <div className="space-y-6">
+    <div className="min-w-0 space-y-6">
 
       {/* ── Header ── */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
@@ -159,14 +159,14 @@ export default function TaxInvoicesPage() {
         ].map((s) => (
           <div
             key={s.label}
-            className={cn("bg-white rounded-xl border p-4 flex items-center gap-4 shadow-sm", s.border)}
+            className={cn("min-w-0 bg-white rounded-xl border p-4 flex items-center gap-4 shadow-sm", s.border)}
           >
             <div className={cn("w-10 h-10 rounded-xl flex items-center justify-center shrink-0", s.iconBg)}>
               <s.icon className={cn("w-5 h-5", s.iconColor)} />
             </div>
-            <div>
+            <div className="min-w-0">
               <p className="text-xs text-gray-500 font-medium">{s.label}</p>
-              <p className="text-lg font-bold text-gray-900 mt-0.5">{s.value}</p>
+              <p className="break-words text-lg font-bold text-gray-900 mt-0.5">{s.value}</p>
             </div>
           </div>
         ))}
@@ -181,7 +181,7 @@ export default function TaxInvoicesPage() {
             placeholder="ค้นหาเลขที่ใบ, ชื่อลูกค้า, เลขภาษี..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="flex-1 text-sm text-gray-700 placeholder:text-gray-400 outline-none bg-transparent"
+            className="min-w-0 flex-1 text-sm text-gray-700 placeholder:text-gray-400 outline-none bg-transparent"
           />
           {search && (
             <button
@@ -215,7 +215,47 @@ export default function TaxInvoicesPage() {
             </button>
           </div>
         ) : (
-          <table className="w-full text-sm">
+          <>
+          <div className="divide-y divide-gray-100 sm:hidden">
+            {filtered.map((t) => {
+              const status = statusMap[t.status] ?? statusMap.draft;
+              return (
+                <article key={t.id} className="space-y-4 p-4">
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="min-w-0">
+                      <p className="break-words text-sm font-semibold text-gray-900">{t.taxInvoiceNumber || "—"}</p>
+                      <p className="mt-1 break-words text-sm text-gray-600">{t.customerName}</p>
+                    </div>
+                    <span className={cn("shrink-0 rounded-full border px-2.5 py-1 text-xs font-medium", status.pill)}>{status.label}</span>
+                  </div>
+                  <dl className="grid grid-cols-2 gap-x-3 gap-y-3 text-xs">
+                    {[
+                      ["วันที่ออก", t.date?.slice(0, 10) || "—"],
+                      ["เลขประจำตัวผู้เสียภาษี", t.taxId || "—"],
+                      ["ยอดก่อน VAT", `฿${fmt(t.total)}`],
+                      ["VAT 7%", `฿${fmt(t.vat)}`],
+                    ].map(([label, value]) => (
+                      <div key={label} className="min-w-0">
+                        <dt className="text-gray-400">{label}</dt>
+                        <dd className="mt-1 break-words font-medium text-gray-700">{value}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                  <div className="flex flex-wrap items-center justify-between gap-3 border-t border-gray-100 pt-3">
+                    <div className="min-w-0">
+                      <p className="text-xs text-gray-400">ยอดรวม</p>
+                      <p className="break-words text-lg font-bold text-gray-900">฿{fmt(t.grandTotal)}</p>
+                    </div>
+                    <div className="flex gap-2">
+                      <Button variant="outline" className="min-h-11" onClick={() => openEdit(t)} aria-label={`แก้ไขใบกำกับภาษี ${t.taxInvoiceNumber}`}><Pencil className="size-4" />แก้ไข</Button>
+                      <Button variant="outline" className="size-11 text-red-500" onClick={() => del(t.id)} aria-label={`ลบใบกำกับภาษี ${t.taxInvoiceNumber}`}><Trash2 className="size-4" /></Button>
+                    </div>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+          <div className="hidden w-full overflow-x-auto sm:block"><table className="w-full min-w-[700px] text-sm">
             <thead>
               <tr className="border-b border-gray-100 bg-gray-50/60">
                 <th className="text-left px-5 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wide">เลขที่</th>
@@ -263,7 +303,7 @@ export default function TaxInvoicesPage() {
                       </span>
                     </td>
                     <td className="px-4 py-3.5">
-                      <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <div className="flex items-center gap-1 opacity-100 transition-opacity">
                         <button
                           onClick={() => openEdit(t)}
                           className="w-7 h-7 rounded-lg flex items-center justify-center text-gray-400 hover:text-indigo-600 hover:bg-indigo-50 transition-all"
@@ -282,7 +322,8 @@ export default function TaxInvoicesPage() {
                 );
               })}
             </tbody>
-          </table>
+          </table></div>
+          </>
         )}
 
         {/* Footer count */}
@@ -297,7 +338,7 @@ export default function TaxInvoicesPage() {
 
       {/* ── Dialog ── */}
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="max-w-lg">
+        <DialogContent className="sm:max-w-lg">
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2 text-base">
               <div className="w-7 h-7 rounded-lg bg-teal-50 border border-teal-100 flex items-center justify-center">
@@ -309,8 +350,8 @@ export default function TaxInvoicesPage() {
 
           <div className="space-y-4 py-2">
             {/* Customer + Tax ID */}
-            <div className="grid grid-cols-2 gap-3">
-              <div className="col-span-2 space-y-1.5">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <div className="col-span-full space-y-1.5">
                 <Label className="text-xs font-semibold text-gray-600">ชื่อลูกค้า / บริษัท *</Label>
                 <Input
                   value={form.customerName}
@@ -319,7 +360,7 @@ export default function TaxInvoicesPage() {
                   className="h-9 text-sm"
                 />
               </div>
-              <div className="col-span-2 space-y-1.5">
+              <div className="col-span-full space-y-1.5">
                 <Label className="text-xs font-semibold text-gray-600">เลขประจำตัวผู้เสียภาษี</Label>
                 <Input
                   value={form.taxId}
@@ -331,7 +372,7 @@ export default function TaxInvoicesPage() {
             </div>
 
             {/* Date + Status */}
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
               <div className="space-y-1.5">
                 <Label className="text-xs font-semibold text-gray-600">วันที่ออก</Label>
                 <Input
@@ -344,7 +385,7 @@ export default function TaxInvoicesPage() {
               <div className="space-y-1.5">
                 <Label className="text-xs font-semibold text-gray-600">สถานะ</Label>
                 <Select value={form.status} onValueChange={(v) => setForm({ ...form, status: v as TaxInvoice["status"] })}>
-                  <SelectTrigger className="h-9 text-sm">
+                  <SelectTrigger className="w-full h-9 text-sm">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -364,7 +405,7 @@ export default function TaxInvoicesPage() {
             {/* Amount section */}
             <div className="rounded-xl border border-gray-100 bg-gray-50 p-4 space-y-3">
               <p className="text-xs font-bold text-gray-500 uppercase tracking-wide">ยอดเงิน</p>
-              <div className="grid grid-cols-3 gap-3">
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
                 <div className="space-y-1.5">
                   <Label className="text-xs text-gray-500">ยอดก่อน VAT (฿)</Label>
                   <Input

@@ -58,7 +58,7 @@ export default function SettingsPage() {
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-3">
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             <div className="space-y-1.5">
               <Label>ชื่อบริษัท (ภาษาไทย)</Label>
               <Input value={general.companyName} onChange={(e) => setGeneral({ ...general, companyName: e.target.value })} />
@@ -100,7 +100,7 @@ export default function SettingsPage() {
           <CardTitle className="text-base">ตั้งค่าเอกสาร</CardTitle>
         </CardHeader>
         <CardContent className="space-y-3">
-          <div className="grid grid-cols-4 gap-3">
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
             <div className="space-y-1.5">
               <Label>Prefix ใบแจ้งหนี้</Label>
               <Input value={invoice.prefix} onChange={(e) => setInvoice({ ...invoice, prefix: e.target.value })} />
@@ -125,7 +125,7 @@ export default function SettingsPage() {
 
           <Separator />
           <p className="text-sm font-medium">ข้อมูลบัญชีธนาคาร</p>
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             <div className="space-y-1.5">
               <Label>ชื่อธนาคาร</Label>
               <Input placeholder="กสิกรไทย" value={invoice.bankName} onChange={(e) => setInvoice({ ...invoice, bankName: e.target.value })} />

@@ -1,4 +1,30 @@
 {
+  "customerPage": {
+    "title": "信任我们的客户",
+    "titleBlue": "信任我们的",
+    "titleRest": "客户",
+    "intro": "每个项目都是我们珍视的合作。我们与企业携手打造满足实际使用需求的数字解决方案。",
+    "directory": "查看客户",
+    "filter": "筛选客户",
+    "search": "搜索客户…",
+    "results": "找到 {count} 位客户",
+    "empty": "此类别没有匹配搜索的客户。",
+    "partnershipTitle": "不只是服务供应商",
+    "partnershipAccent": "更是与您并肩的团队",
+    "partnershipBody": "我们相信长期合作，从理解目标、规划、设计和开发，到持续支持与改进。",
+    "featured": "精选客户项目",
+    "careTitle": "与我们合作可以期待什么",
+    "ctaTitle": "让您的业务成为我们的下一个项目",
+    "ctaBody": "与团队讨论项目，找到符合您需求的方向。",
+    "categories": {
+      "all": "全部",
+      "corporate": "Corporate",
+      "sme": "SME",
+      "government": "Government",
+      "startup": "Startup",
+      "other": "其他"
+    }
+  },
   "portfolioPage": {
     "title": "我们的作品",
     "intro": "我们通过清晰传达品牌的设计和适用于实际使用的技术，打造网站、平台与业务系统。",
@@ -11,6 +37,7 @@
     "close": "关闭项目详情",
     "resultCount": "找到 {count} 个项目",
     "descriptions": {
+      "preview": "项目05的临时图片与说明，将在之后替换为实际作品。",
       "sistomat": "SISTOMAT业务系统，具有清晰的登录界面和工业品牌形象。",
       "gography": "展示摄影师陪同旅游、行程搜索和便捷咨询渠道的旅游网站。",
       "sacit": "展示活动照片、新闻和参与者信息的SACIT Symposium网站。",
@@ -243,7 +270,8 @@
       "erp-systems": "从报价到账务的一体化业务管理系统",
       "game-development": "覆盖所有平台的 2D/3D 游戏与互动体验",
       "mobile-apps": "贴合业务需求的 iOS 与 Android 应用"
-    }
+    },
+    "viewAll": "查看所有服务"
   },
   "customers": {
     "title": "深受客户信赖",
@@ -403,5 +431,48 @@
     "ctaT": "一起创造精彩吧?",
     "ctaB": "免费咨询,无任何费用。团队随时为您提供最适合业务的建议。",
     "ctaBtn": "联系我们"
+  },
+  "erpDetail": {
+    "heroTitle": "连接企业的每一项工作，",
+    "heroAccent": "共同向前。",
+    "contact": "咨询 ERP 系统",
+    "explore": "查看模块",
+    "modulesTitle": "与业务共同成长的系统",
+    "modulesIntro": "从团队最需要的功能开始，再根据真实工作流程逐步扩展。",
+    "sales": "销售与客户管理",
+    "salesBody": "连接客户信息、销售和报价，让团队基于共享数据持续工作。",
+    "finance": "单据与财务管理",
+    "financeBody": "连接报价单、账单、税务单据和收据，减少重复录入。",
+    "inventory": "库存与采购管理",
+    "inventoryBody": "根据业务流程设计入库、出库和采购管理。",
+    "people": "人员与团队管理",
+    "peopleBody": "按照组织结构整理团队信息和人事工作流程。",
+    "reports": "报表与分析",
+    "reportsBody": "将关键数据整理成报表和仪表盘，方便掌握工作进展。",
+    "custom": "定制业务系统",
+    "customBody": "根据团队的具体需求设计模块及系统集成。",
+    "benefit1": "信息互联",
+    "benefit1Body": "让部门共享一致的数据，减少传递多个版本文件的负担。",
+    "benefit2": "清晰的工作流程",
+    "benefit2Body": "根据各团队的职责设计流程与访问权限。",
+    "benefit3": "支持持续扩展",
+    "benefit3Body": "建立可随组织成长而增加模块的系统基础。",
+    "workTitle": "从业务需求到实际运行的系统",
+    "workBody": "Sistomat — 我们设计并开发的管理系统案例。",
+    "workLink": "查看作品",
+    "processTitle": "先理解工作，再设计系统。",
+    "process1": "了解团队的挑战、数据和当前工作流程。",
+    "process2": "明确模块范围并设计界面，建立共同方向。",
+    "process3": "围绕实际使用场景开发和测试，收集团队反馈。",
+    "process4": "准备数据、指导使用，并规划交付后的支持。",
+    "faqTitle": "ERP 项目常见问题",
+    "q1": "需要同时开发所有模块吗？",
+    "a1": "不需要。可以从最重要的功能开始，根据团队准备情况分阶段扩展。",
+    "q2": "能连接现有系统吗？",
+    "a2": "我们会先检查 API、数据格式和现有系统限制，再确定集成方案。",
+    "q3": "开发需要多长时间，费用是多少？",
+    "a3": "取决于模块数量、复杂度和集成范围。确认需求后，我们会在开工前提供范围、时间安排和报价。",
+    "ctaTitle": "让系统适应您的业务。",
+    "ctaBody": "告诉我们团队在哪些工作上遇到困难，我们会一起寻找合适的方向。"
   }
 }

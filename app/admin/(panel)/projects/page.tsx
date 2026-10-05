@@ -81,8 +81,8 @@ export default function ProjectsPage() {
   }
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
+    <div className="min-w-0 space-y-6">
+      <div className="flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center">
         <div>
           <h1 className="text-2xl font-bold tracking-tight">โปรเจค</h1>
           <p className="text-muted-foreground text-sm mt-1">จัดการโปรเจคทั้งหมด</p>
@@ -103,7 +103,7 @@ export default function ProjectsPage() {
         </CardContent></Card>
       ) : (
         <Card>
-          <Table>
+          <Table className="admin-mobile-list" role="table">
             <TableHeader>
               <TableRow>
                 <TableHead>ชื่อโปรเจค</TableHead>
@@ -118,14 +118,14 @@ export default function ProjectsPage() {
             <TableBody>
               {filtered.map((p) => (
                 <TableRow key={p.id}>
-                  <TableCell className="font-medium">{p.name}</TableCell>
-                  <TableCell className="text-muted-foreground">{p.customer}</TableCell>
-                  <TableCell>
+                  <TableCell data-label="ชื่อโปรเจค" className="font-medium">{p.name}</TableCell>
+                  <TableCell data-label="ลูกค้า" className="text-muted-foreground">{p.customer}</TableCell>
+                  <TableCell data-label="สถานะ">
                     <Badge variant="outline" className={statusMap[p.status].className}>
                       {statusMap[p.status].label}
                     </Badge>
                   </TableCell>
-                  <TableCell>
+                  <TableCell data-label="ความคืบหน้า">
                     <div className="flex items-center gap-2">
                       <div className="w-20 h-1.5 rounded-full bg-gray-100">
                         <div className="h-full rounded-full bg-indigo-500" style={{ width: `${p.progress}%` }} />
@@ -133,12 +133,12 @@ export default function ProjectsPage() {
                       <span className="text-xs text-muted-foreground">{p.progress}%</span>
                     </div>
                   </TableCell>
-                  <TableCell>฿{p.budget?.toLocaleString("th-TH")}</TableCell>
-                  <TableCell className="text-muted-foreground text-sm">{p.endDate?.slice(0, 10)}</TableCell>
-                  <TableCell>
+                  <TableCell data-label="งบประมาณ">฿{p.budget?.toLocaleString("th-TH")}</TableCell>
+                  <TableCell data-label="วันสิ้นสุด" className="text-muted-foreground text-sm">{p.endDate?.slice(0, 10)}</TableCell>
+                  <TableCell data-label="จัดการ">
                     <div className="flex gap-1">
-                      <Button size="icon" variant="ghost" className="size-7" onClick={() => openEdit(p)}><Pencil className="size-3.5" /></Button>
-                      <Button size="icon" variant="ghost" className="size-7 text-red-500 hover:bg-red-50" onClick={() => del(p.id)}><Trash2 className="size-3.5" /></Button>
+                      <Button size="icon" variant="ghost" className="size-7" aria-label="แก้ไขรายการ" onClick={() => openEdit(p)}><Pencil className="size-3.5" /></Button>
+                      <Button size="icon" variant="ghost" className="size-7 text-red-500 hover:bg-red-50" aria-label="ลบรายการ" onClick={() => del(p.id)}><Trash2 className="size-3.5" /></Button>
                     </div>
                   </TableCell>
                 </TableRow>
@@ -149,14 +149,14 @@ export default function ProjectsPage() {
       )}
 
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="max-w-lg">
+        <DialogContent className="sm:max-w-lg">
           <DialogHeader><DialogTitle>{editing ? "แก้ไขโปรเจค" : "เพิ่มโปรเจคใหม่"}</DialogTitle></DialogHeader>
           <div className="space-y-3 py-2 max-h-[65vh] overflow-y-auto pr-1">
             <div className="space-y-1.5">
               <Label>ชื่อโปรเจค *</Label>
               <Input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
             </div>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
               <div className="space-y-1.5">
                 <Label>ลูกค้า *</Label>
                 <Input value={form.customer} onChange={(e) => setForm({ ...form, customer: e.target.value })} />
@@ -164,7 +164,7 @@ export default function ProjectsPage() {
               <div className="space-y-1.5">
                 <Label>สถานะ</Label>
                 <Select value={form.status} onValueChange={(v) => setForm({ ...form, status: v as Project["status"] })}>
-                  <SelectTrigger><SelectValue /></SelectTrigger>
+                  <SelectTrigger className="w-full"><SelectValue /></SelectTrigger>
                   <SelectContent>
                     {Object.entries(statusMap).map(([k, v]) => <SelectItem key={k} value={k}>{v.label}</SelectItem>)}
                   </SelectContent>
